@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html ng-app="indexPage">
+<html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+	<link rel="stylesheet" type="text/css" href="css\signin.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
 	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+	<script async defer src="https://apis.google.com/js/platform.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  	<script src="https://apis.google.com/js/api:client.js"></script>
 	<title></title>
+
 </head>
-<body ng-controller="modalController">
+<body>
+	  <!-- Simple header with scrollable tabs. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 	  <header class="mdl-layout__header">
-	  	<div>
-			<img src="images\header.png" alt="VESIT">
-		</div>
+	  	<img src="images\header.png">
 	    <!-- Tabs -->
-	    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-	      <a href="index.html" class="mdl-layout__tab is-active">HOME</a>
-	      <a href="application.html" class="mdl-layout__tab">APPLY</a>
-	      <a href="contact.html" class="mdl-layout__tab">CONTACT US</a>
-	      <div>
-	      	<button type="button" id="show-dialog" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-model="showModal" ng-click="modal()">
-  				Login
-			</button>
-	      </div>
-	    </div>
+	    <nav class="mdl-layout__tab-bar mdl-js-ripple-effect">
+	        <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+	        <a href="#scroll-tab-2" class="mdl-layout__tab">Tab 2</a>
+	        <a href="#scroll-tab-3" class="mdl-layout__tab">Tab 3</a>
+	        <a href="#scroll-tab-4" class="mdl-layout__tab">Tab 4</a>
+	        <a href="#scroll-tab-5" class="mdl-layout__tab">Tab 5</a>
+	        <a href="#scroll-tab-6" class="mdl-layout__tab">Tab 6</a>
+	        <a id="signinBtn" class="mdl-layout__tab ">
+    			<button id="customBtn" class="customGPlusSignIn">
+	      			<span class="icon"></span>
+	      			<span class="buttonText">Login</span>
+    			</button>
+	        </a>
+	    </nav>
 	  </header>
-	  <div class="mdl-layout__drawer">
-	    <span class="mdl-layout-title">Title</span>
-	  </div>
-	  <main class="mdl-layout__content">
+	</div>
+
+  	<main class="mdl-layout__content">
 	    <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
 	      <div class="page-content"><!-- Your content goes here --></div>
 	    </section>
@@ -47,29 +55,6 @@
 	    <section class="mdl-layout__tab-panel" id="scroll-tab-6">
 	      <div class="page-content"><!-- Your content goes here --></div>
 	    </section>
-	  </main>
-	</div>
-		<div class="mdl-dialog" ng-show="showModal">
-			<!-- Simple Textfield -->
-			<form action="#">
-				    <label for="user">Username</label>
-				    <input class="mdl-textfield__input" type="text" id="user">
-				    <label for="password">Password</label>				 
-		    		<input class="mdl-textfield__input" type="password" id="password"><br>			  
-					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="login()">
-						LOGIN
-					</button>
-			</form>
-		</div>
-<script>
-	angular.module("indexPage",[]).controller("modalController",function($scope){
-		$scope.modal = function(){
-			$scope.showModal = true;
-		}
-		$scope.login = function(){
-			$scope.showModal = false;
-		}
-	});
-</script>
+    </main>
 </body>
 </html>
