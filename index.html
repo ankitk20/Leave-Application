@@ -4,21 +4,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-	<link rel="stylesheet" type="text/css" href="css\signin.css">
+	<link rel="stylesheet" type="text/css" href="css/signin.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
 	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 	<script async defer src="https://apis.google.com/js/platform.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
   	<script src="https://apis.google.com/js/api:client.js"></script>
 	<title></title>
-
 </head>
 <body>
 	  <!-- Simple header with scrollable tabs. -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 	  <header class="mdl-layout__header">
-	  	<img src="images\header.png">
-	    <!-- Tabs -->
+	  	<img src="images\header.png">	
 	    <nav class="mdl-layout__tab-bar mdl-js-ripple-effect">
 	        <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
 	        <a href="#scroll-tab-2" class="mdl-layout__tab">Tab 2</a>
@@ -26,12 +24,13 @@
 	        <a href="#scroll-tab-4" class="mdl-layout__tab">Tab 4</a>
 	        <a href="#scroll-tab-5" class="mdl-layout__tab">Tab 5</a>
 	        <a href="#scroll-tab-6" class="mdl-layout__tab">Tab 6</a>
-	        <a id="signinBtn" class="mdl-layout__tab ">
-    			<button id="customBtn" class="customGPlusSignIn">
-	      			<span class="icon"></span>
-	      			<span class="buttonText">Login</span>
-    			</button>
-	        </a>
+	        <div class="mdl-layout-spacer"></div>
+	        <div>
+	        	<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+	        		<span class="icon"></span>
+  						LOGIN
+						</button>
+	        </div>
 	    </nav>
 	  </header>
 	</div>
