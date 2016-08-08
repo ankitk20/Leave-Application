@@ -12,6 +12,20 @@
 	<link rel="stylesheet" href="./mdl/material.min.css">
 	<script src="./mdl/material.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	<!-- Google OAuth -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+   <meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
+   <script>
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        document.getElementById('title').innerHTML = profile.getName();
+      }
+   </script>
 </head>
 <body>
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -20,7 +34,7 @@
 				<span class="mdl-layout-title">Welcome!</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation">
-					<a class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect">Login</a>
+					<div class="g-signin2" data-onsuccess="onSignIn"></div>
 				</nav>
 			</div>
 		</header>
@@ -37,7 +51,7 @@
 				<div class="mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--10-col-desktop">
 					<div class="mdl-card mdl-shadow--8dp" style="width: 100%;">
 						<div class="mdl-card__title">
-							<H1 class="mdl-card__title-text">VESIT leave application!</H1>
+							<h1 class="mdl-card__title-text" id="title">VESIT leave application!</h1>
 						</div>
 						<div class="mdl-card__supporting-text">
 							<ul class="mdl-list">
