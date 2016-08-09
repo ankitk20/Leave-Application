@@ -36,10 +36,14 @@ document.getElementById('fromDate').addEventListener('onOk', function() {
 	document.getElementById('toDiv').className += ' is-dirty';
 	toDate._init = fromDate.time;
 	toDate._past = fromDate.time;
+	document.getElementById('numberDiv').className += ' is-dirty';
+	document.getElementById('noOfDays').value = toDate.time.diff(fromDate.time, 'days')+1;
 });
 
 // Do this when to-date is selected
 document.getElementById('toDate').addEventListener('onOk', function() {
 	document.getElementById('toDiv').className += ' is-dirty';
 	this.value = toDate.time.format("ddd, MMM D YYYY").toString();
+	document.getElementById('numberDiv').className += ' is-dirty';
+	document.getElementById('noOfDays').value = toDate.time.diff(fromDate.time, 'days')+1;
 });

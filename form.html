@@ -58,13 +58,13 @@
 
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
-        								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select" style="width: 100%;">
-        									<input class="mdl-textfield__input" type="text" id="ankit" value="Casual" readonly tabIndex="-1">
-        									<label for="ankit">
+        								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+        									<input class="mdl-textfield__input" type="text" id="typeOfLeave" value="Select one" readonly tabIndex="-1">
+        									<label for="typeOfLeave">
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
-        									<label for="ankit" class="mdl-textfield__label">Type of leave:</label>
-        									<ul for="ankit" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+        									<label for="typeOfLeave" class="mdl-textfield__label">Type of leave:</label>
+        									<ul for="typeOfLeave" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
         										<li class="mdl-menu__item">Casual</li>
         										<li class="mdl-menu__item">Sick</li>
         										<li class="mdl-menu__item">Maternity</li>
@@ -77,11 +77,11 @@
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
         								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-        									<input class="mdl-textfield__input" type="text" id="applyTo" value="HOD" readonly tabIndex="-1">
+        									<input class="mdl-textfield__input" type="text" id="applyTo" value="Select one" readonly tabIndex="-1">
         									<label for="applyTo">
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
-        									<label for="applyTo" class="mdl-textfield__label">Apply to</label>
+        									<label for="applyTo" class="mdl-textfield__label">Apply to:</label>
         									<ul for="applyTo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
         										<li class="mdl-menu__item">HOD</li>
         										<li class="mdl-menu__item">Deputy HOD</li>
@@ -104,13 +104,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
+                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty" id="numberDiv">
+                                            <input class="mdl-textfield__input" type="number" rows="3" id="noOfDays" readonly></input>
+                                            <label class="mdl-textfield__label" for="noOfDays">Number of Days:</label>
+                                        </div>
+                                    </div>
 
+                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                             <textarea class="mdl-textfield__input" type="text" rows="3" id="note"></textarea>
                                             <label class="mdl-textfield__label" for="note">Note (Optional)..</label>
                                         </div>
-
                                     </div>
 
                                 </div>
