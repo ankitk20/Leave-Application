@@ -12,11 +12,21 @@
 	<link rel="stylesheet" href="./mdl/material.min.css">
 	<script src="./mdl/material.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <!-- getmdl-select (used for select input in MDL) -->
 	<script src="./getmdl-select/getmdl-select.min.js"></script>
 	<link rel="stylesheet" href="./getmdl-select/getmdl-select.min.css">
+
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="css/mdDateTimePicker.min.css">
+    <script src="js/moment.min.js"></script>
 </head>
 <body>
+
+    <!-- Date Picker -->
+    <script src="js/mdDateTimePicker.min.js"></script>
+
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 		<header class="mdl-layout__header mdl-layout__header--scroll">
 			<div class="mdl-layout__header-row">
@@ -43,10 +53,10 @@
 							<H1 class="mdl-card__title-text">Apply for leave!</H1>
 						</div>
 						<div class="mdl-card__supporting-text">
-							<form style="margin: auto;">
+							<form>
                                 <div class="mdl-grid">
 
-                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
         								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select" style="width: 100%;">
         									<input class="mdl-textfield__input" type="text" id="ankit" value="Casual" readonly tabIndex="-1">
@@ -64,7 +74,7 @@
 
     								</div>
 
-                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
         								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
         									<input class="mdl-textfield__input" type="text" id="applyTo" value="HOD" readonly tabIndex="-1">
@@ -80,23 +90,23 @@
 
                                     </div>
 
-                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-
-        								<label for="from">From:</label>	
-        								<input type="date" name="from" id="from">
-
+                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="fromDiv">
+                                            <input type="text" class="mdl-textfield__input" id="fromDate">
+                                            <label class="mdl-textfield__label" for="fromDate" id="fromLabel">From Date:</label>
+                                        </div>
                                     </div>
 
-                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-
-        								<label for="to">To:</label>
-        								<input type="date" name="to" id="to">
-
+                                    <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="toDiv">
+                                            <input type="text" class="mdl-textfield__input" id="toDate">
+                                            <label class="mdl-textfield__label" for="fromDate" id="toLabel">To Date:</label>
+                                        </div>
                                     </div>
 
-                                    <div class="mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                                    <div class="mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
-                                        <div class="mdl-textfield mdl-js-textfield">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                             <textarea class="mdl-textfield__input" type="text" rows="3" id="note"></textarea>
                                             <label class="mdl-textfield__label" for="note">Note (Optional)..</label>
                                         </div>
@@ -117,5 +127,6 @@
 			</div>
 		</main>
 	</div>
+    <script src="js/date.js"></script>
 </body>
 </html>
