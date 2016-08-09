@@ -15,17 +15,17 @@
 
 	<!-- Google OAuth -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-   <meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
-   <script>
-      function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        document.getElementById('title').innerHTML = profile.getName();
-      }
-   </script>
+	<meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
+	<script>
+		function onSignIn(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			console.log('Name: ' + profile.getName());
+			console.log('Image URL: ' + profile.getImageUrl());
+			console.log('Email: ' + profile.getEmail());
+			document.getElementById('title').innerHTML = profile.getName();
+		}
+	</script>
 </head>
 <body>
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -40,7 +40,7 @@
 		</header>
 		<div class="mdl-layout__drawer">
 			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link">Home</a>
+				<a class="mdl-navigation__link" href="/Leave-Application/">Home</a>
 				<a class="mdl-navigation__link">About Us</a>
 				<a class="mdl-navigation__link">Contact</a>
 			</nav>
