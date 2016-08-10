@@ -18,12 +18,13 @@
 	<meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
 	<script>
 		function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-			console.log('Name: ' + profile.getName());
-			console.log('Image URL: ' + profile.getImageUrl());
-			console.log('Email: ' + profile.getEmail());
-			document.getElementById('title').innerHTML = profile.getName();
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'token.php');
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+			  window.location='form.php';
+			};
+			xhr.send('idtoken=' + googleUser.getAuthResponse().id_token);
 		}
 	</script>
 </head>
@@ -34,7 +35,7 @@
 				<span class="mdl-layout-title">Welcome!</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation">
-					<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 				</nav>
 			</div>
 		</header>
@@ -79,7 +80,8 @@
 							</ul>
 						</div>
 						<div class="mdl-card__actions mdl-card--border">
-			               <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">Login to get started!</a>
+			               <!-- <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">Login to get started!</a> -->
+			               <div class="g-signin2" data-onsuccess="onSignIn"></div>
 			            </div>
 					</div>
 				</div>

@@ -1,3 +1,6 @@
+<?php
+    include_once 'loginCheck.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +24,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="css/mdDateTimePicker.min.css">
     <script src="js/moment.min.js"></script>
+
+    <!-- Google OAuth -->
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    <meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              window.location='signOut.php';
+            });
+        }
+
+        function onLoad() {
+            gapi.load('auth2', function() {
+            gapi.auth2.init();
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -33,7 +54,7 @@
 				<span class="mdl-layout-title">Welcome!</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation">
-					<a class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect">Login</a>
+					<a class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect" onclick="signOut();">Sign out</a>
 				</nav>
 			</div>
 		</header>
@@ -50,7 +71,7 @@
 				<div class="mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--10-col-desktop">
 					<div class="mdl-card mdl-shadow--8dp" style="width: 100%;">
 						<div class="mdl-card__title">
-							<H1 class="mdl-card__title-text">Apply for leave!</H1>
+							<h1 class="mdl-card__title-text">Apply for leave <?php echo $_SESSION['name'];?>!</h1>
 						</div>
 						<div class="mdl-card__supporting-text">
 							<form>
