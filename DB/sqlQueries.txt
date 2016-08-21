@@ -1,0 +1,29 @@
+CREATE TABLE designation(desgnID varchar(3) primary key, title varchar(35) not null)
+
+CREATE TABLE dept(deptID varchar(5) primary key, dname varchar(20))
+
+CREATE TABLE staffDetails(sub char(21) primary key, email varchar(320) not null, CHECK (email like '%@%'), fname varchar(35) not null, lname varchar(35), desgnID varchar(3) foreign key references designation(desgnID) not null, DOJ date not null, contact char(10), CHECK (contact like '[0-9]'), address varchar(200), deptID varchar(5), FOREIGN KEY(deptID) REFERENCES dept(deptID))
+
+CREATE TABLE staffDetails(sub char(21) primary key, email varchar(320) not null, fname varchar(35) not null, lname varchar(35), desgnID varchar(3) not null, DOJ date not null, contact char(10), address varchar(200))
+
+ALTER TABLE staffDetails ADD CHECK (email like '%@ves.ac.in')
+
+ALTER TABLE staffDetails ADD FOREIGN KEY(desgnID) REFERENCES designation(desgnID)
+
+ALTER TABLE staffDetails ADD CHECK (contact like '[0-9]')
+
+CREATE TABLE HOD(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
+
+CREATE TABLE DHOD(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
+
+CREATE TABLE admin(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
+
+CREATE TABLE leavesAllotted(desgnID varchar(3), FOREIGN KEY(desgnID) REFERENCES designation(desgnID), SL int, CL int, VAC int, EG int, EL int)
+
+CREATE TABLE leaveHistory(appliedBy varchar(21), FOREIGN KEY(appliedBy) REFERENCES staffDetails(sub), appliedTo varchar(21), FOREIGN KEY(appliedTo) REFERENCES staffDetails(sub), fromDate date, toDate date, leaveType varchar(20), note varchar(300), PRIMARY KEY(appliedBy, appliedTo, fromDate, toDate, leaveType), `status` varchar(10) DEFAULT 'PENDING')
+
+ALTER TABLE leaveHistory ADD CHECK (`status` in ('APPROVED','REJECTED','PENDING'))
+
+CREATE TABLE principal(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
+
+CREATE TABLE vprincipal(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
