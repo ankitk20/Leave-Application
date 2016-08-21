@@ -34,8 +34,9 @@ document.getElementById('fromDate').addEventListener('onOk', function() {
 	this.value = fromDate.time.format("ddd, MMM D YYYY").toString();
 	document.getElementById('toDate').value = fromDate.time.format("ddd, MMM D YYYY").toString();
 	document.getElementById('toDiv').className += ' is-dirty';
-	toDate._init = fromDate.time;
-	toDate._past = fromDate.time;
+	toDate._init = moment(fromDate.time);
+	toDate._past = moment(fromDate.time);
+	toDate._future = moment(fromDate.time).add(30, 'days');
 	document.getElementById('numberDiv').className += ' is-dirty';
 	document.getElementById('noOfDays').value = toDate.time.diff(fromDate.time, 'days')+1;
 });
