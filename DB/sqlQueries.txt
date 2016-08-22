@@ -1,29 +1,55 @@
-CREATE TABLE designation(desgnID varchar(3) primary key, title varchar(35) not null)
+CREATE TABLE Designation(
+	Designation_ID VARCHAR(3) PRIMARY KEY, 
+	Title VARCHAR(35) NOT NULL 
+)
 
-CREATE TABLE dept(deptID varchar(5) primary key, dname varchar(20))
+CREATE TABLE Department(
+	Department_ID VARCHAR(5) PRIMARY KEY, 
+	Department_Name VARCHAR(20) NOT NULL UNIQUE
+)
 
-CREATE TABLE staffDetails(sub char(21) primary key, email varchar(320) not null, CHECK (email like '%@%'), fname varchar(35) not null, lname varchar(35), desgnID varchar(3) foreign key references designation(desgnID) not null, DOJ date not null, contact char(10), CHECK (contact like '[0-9]'), address varchar(200), deptID varchar(5), FOREIGN KEY(deptID) REFERENCES dept(deptID))
+CREATE TABLE StaffDetails(
+	Google_UID CHAR(21) PRIMARY KEY,
+    Email VARCHAR(320) NOT NULL,
+    FirstName VARCHAR(35) NOT NULL, 
+    LastName VARCHAR(35), 
+    Designation_ID VARCHAR(3) NOT NULL, 
+    DateOfJoin DATE, 
+    Contact VARCHAR(10),
+    Department_ID VARCHAR(5), 
+    CONSTRAINT CHECK (Email LIKE '%@ves.ac.in'), 
+    CONSTRAINT CHECK (Contact LIKE '[0-9]'),
+    FOREIGN KEY(Department_ID) REFERENCES Department(Department_ID),
+    FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID)
+)
 
-CREATE TABLE staffDetails(sub char(21) primary key, email varchar(320) not null, fname varchar(35) not null, lname varchar(35), desgnID varchar(3) not null, DOJ date not null, contact char(10), address varchar(200))
+CREATE TABLE Admin(
+	Google_UID CHAR(21), 
+	FOREIGN KEY(Google_UID) REFERENCES StaffDetails(Google_UID)
+)
 
-ALTER TABLE staffDetails ADD CHECK (email like '%@ves.ac.in')
+CREATE TABLE LeavesAllotted(
+	Designation_ID VARCHAR(3), 
+	SickLeave INT, 
+	CasualLeave INT, 
+	Vacation INT,
+	EarlyGo INT, 
+	EarnedLeave INT
+	FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID), 
+)
 
-ALTER TABLE staffDetails ADD FOREIGN KEY(desgnID) REFERENCES designation(desgnID)
+CREATE TABLE LeaveHistory(
+	AppliedBy VARCHAR(21),
+	FOREIGN KEY(AppliedBy) REFERENCES StaffDetails(Google_UID), 
+	AppliedTo VARCHAR(21), 
+	FOREIGN KEY(AppliedTo) REFERENCES StaffDetails(Google_UID), 
+	FromDate Date, ToDate DATE, 
+	LeaveType VARCHAR(20), Note VARCHAR(300), PRIMARY KEY(AppliedBy, AppliedTo, FromDate, ToDate, LeaveType), 
+	`Status` VARCHAR(10) DEFAULT 'PENDING'
+)
 
-ALTER TABLE staffDetails ADD CHECK (contact like '[0-9]')
 
-CREATE TABLE HOD(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
+/*ALTER TABLE StaffDetails ADD FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID)
+ALTER TABLE StaffDetails ADD CHECK (Contact LIKE '[0-9]')*/
+ALTER TABLE LeaveHistory ADD CHECK (`Status` IN ('APPROVED','REJECTED','PENDING'))*/
 
-CREATE TABLE DHOD(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
-
-CREATE TABLE admin(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
-
-CREATE TABLE leavesAllotted(desgnID varchar(3), FOREIGN KEY(desgnID) REFERENCES designation(desgnID), SL int, CL int, VAC int, EG int, EL int)
-
-CREATE TABLE leaveHistory(appliedBy varchar(21), FOREIGN KEY(appliedBy) REFERENCES staffDetails(sub), appliedTo varchar(21), FOREIGN KEY(appliedTo) REFERENCES staffDetails(sub), fromDate date, toDate date, leaveType varchar(20), note varchar(300), PRIMARY KEY(appliedBy, appliedTo, fromDate, toDate, leaveType), `status` varchar(10) DEFAULT 'PENDING')
-
-ALTER TABLE leaveHistory ADD CHECK (`status` in ('APPROVED','REJECTED','PENDING'))
-
-CREATE TABLE principal(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
-
-CREATE TABLE vprincipal(sub char(21), FOREIGN KEY(sub) REFERENCES staffDetails(sub))
