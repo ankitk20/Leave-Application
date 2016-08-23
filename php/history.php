@@ -12,12 +12,12 @@
 	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>-->
 
 	<!-- Local MDL (ONLY FOR TESTING PURPOSES) -->
-	<link rel="stylesheet" href="./mdl/material.min.css">
-	<script src="./mdl/material.min.js"></script>
+	<link rel="stylesheet" href="../mdl/material.min.css">
+	<script src="../mdl/material.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<!-- getmdl-select (used for select input in MDL) -->
-	<script src="./getmdl-select/getmdl-select.min.js"></script>
-	<link rel="stylesheet" href="./getmdl-select/getmdl-select.min.css">
+	<script src="../getmdl-select/getmdl-select.min.js"></script>
+	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css">
 
 	<!-- Google OAuth -->
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>

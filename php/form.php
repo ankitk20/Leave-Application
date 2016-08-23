@@ -1,6 +1,6 @@
-<?php
+<!-- <?php
     include_once 'loginCheck.php';
-?>
+?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,18 +12,18 @@
 	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>-->
 
 	<!-- Local MDL (ONLY FOR TESTING PURPOSES) -->
-	<link rel="stylesheet" href="./mdl/material.min.css">
-	<script src="./mdl/material.min.js"></script>
+	<link rel="stylesheet" href="../mdl/material.min.css">
+	<script src="../mdl/material.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- getmdl-select (used for select input in MDL) -->
-	<script src="./getmdl-select/getmdl-select.min.js"></script>
-	<link rel="stylesheet" href="./getmdl-select/getmdl-select.min.css">
+	<script src="../getmdl-select/getmdl-select.min.js"></script>
+	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css">
 
     <!-- Date Picker -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="css/mdDateTimePicker.min.css">
-    <script src="js/moment.min.js"></script>
+    <link rel="stylesheet" href="../css/mdDateTimePicker.min.css">
+    <script src="../js/moment.min.js"></script>
 
     <!-- Google OAuth -->
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
@@ -46,7 +46,7 @@
 <body>
 
     <!-- Date Picker -->
-    <script src="js/mdDateTimePicker.min.js"></script>
+    <script src="../js/mdDateTimePicker.min.js"></script>
 
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 		<header class="mdl-layout__header mdl-layout__header--scroll">
@@ -153,6 +153,6 @@
 			</div>
 		</main>
 	</div>
-    <script src="js/date.js"></script>
+    <script src="../js/date.js"></script>
 </body>
 </html>
