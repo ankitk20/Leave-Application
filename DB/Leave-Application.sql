@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 21, 2016 at 10:01 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Host: 127.0.0.1
+-- Generation Time: Aug 25, 2016 at 09:05 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,28 +17,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Leave-Application`
+-- Database: `leave-application`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Table structure for table `authority`
 --
 
-CREATE TABLE `admin` (
-  `sub` char(21) DEFAULT NULL
+CREATE TABLE `authority` (
+  `Google_UID` char(21) DEFAULT NULL,
+  `Title` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dept`
+-- Table structure for table `department`
 --
 
-CREATE TABLE `dept` (
-  `deptID` varchar(5) NOT NULL,
-  `dname` varchar(20) DEFAULT NULL
+CREATE TABLE `department` (
+  `Department_ID` varchar(5) NOT NULL,
+  `Department_Name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -48,97 +49,56 @@ CREATE TABLE `dept` (
 --
 
 CREATE TABLE `designation` (
-  `desgnID` varchar(3) NOT NULL,
-  `title` varchar(35) NOT NULL
+  `Designation_ID` varchar(3) NOT NULL,
+  `Title` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `DHOD`
+-- Table structure for table `leavehistory`
 --
 
-CREATE TABLE `DHOD` (
-  `sub` char(21) DEFAULT NULL
+CREATE TABLE `leavehistory` (
+  `AppliedBy` varchar(21) NOT NULL,
+  `AppliedTo` varchar(21) NOT NULL,
+  `FromDate` date NOT NULL,
+  `ToDate` date NOT NULL,
+  `LeaveType` varchar(20) NOT NULL,
+  `Note` varchar(300) DEFAULT NULL,
+  `Status` varchar(10) DEFAULT 'PENDING'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `HOD`
+-- Table structure for table `leavesallotted`
 --
 
-CREATE TABLE `HOD` (
-  `sub` char(21) DEFAULT NULL
+CREATE TABLE `leavesallotted` (
+  `Designation_ID` varchar(3) DEFAULT NULL,
+  `SickLeave` int(11) DEFAULT NULL,
+  `CasualLeave` int(11) DEFAULT NULL,
+  `Vacation` int(11) DEFAULT NULL,
+  `EarlyGo` int(11) DEFAULT NULL,
+  `EarnedLeave` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `leaveHistory`
+-- Table structure for table `staffdetails`
 --
 
-CREATE TABLE `leaveHistory` (
-  `appliedBy` varchar(21) NOT NULL,
-  `appliedTo` varchar(21) NOT NULL,
-  `fromDate` date NOT NULL,
-  `toDate` date NOT NULL,
-  `leaveType` varchar(20) NOT NULL,
-  `note` varchar(300) DEFAULT NULL,
-  `status` varchar(10) DEFAULT 'PENDING'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `leavesAllotted`
---
-
-CREATE TABLE `leavesAllotted` (
-  `desgnID` varchar(3) DEFAULT NULL,
-  `SL` int(11) DEFAULT NULL,
-  `CL` int(11) DEFAULT NULL,
-  `VAC` int(11) DEFAULT NULL,
-  `EG` int(11) DEFAULT NULL,
-  `EL` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `principal`
---
-
-CREATE TABLE `principal` (
-  `sub` char(21) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `staffDetails`
---
-
-CREATE TABLE `staffDetails` (
-  `sub` char(21) NOT NULL,
-  `email` varchar(320) NOT NULL,
-  `fname` varchar(35) NOT NULL,
-  `lname` varchar(35) DEFAULT NULL,
-  `desgnID` varchar(3) NOT NULL,
-  `DOJ` date NOT NULL,
-  `contact` char(10) DEFAULT NULL,
-  `address` varchar(200) DEFAULT NULL,
-  `deptID` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vprincipal`
---
-
-CREATE TABLE `vprincipal` (
-  `sub` char(21) DEFAULT NULL
+CREATE TABLE `staffdetails` (
+  `Google_UID` char(21) NOT NULL,
+  `Email` varchar(320) NOT NULL,
+  `FirstName` varchar(35) NOT NULL,
+  `LastName` varchar(35) DEFAULT NULL,
+  `Designation_ID` varchar(3) NOT NULL,
+  `DateOfJoin` date DEFAULT NULL,
+  `Contact` varchar(10) DEFAULT NULL,
+  `Department_ID` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -146,121 +106,74 @@ CREATE TABLE `vprincipal` (
 --
 
 --
--- Indexes for table `admin`
+-- Indexes for table `authority`
 --
-ALTER TABLE `admin`
-  ADD KEY `sub` (`sub`);
+ALTER TABLE `authority`
+  ADD KEY `Google_UID` (`Google_UID`);
 
 --
--- Indexes for table `dept`
+-- Indexes for table `department`
 --
-ALTER TABLE `dept`
-  ADD PRIMARY KEY (`deptID`);
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`Department_ID`),
+  ADD UNIQUE KEY `Department_Name` (`Department_Name`);
 
 --
 -- Indexes for table `designation`
 --
 ALTER TABLE `designation`
-  ADD PRIMARY KEY (`desgnID`);
+  ADD PRIMARY KEY (`Designation_ID`);
 
 --
--- Indexes for table `DHOD`
+-- Indexes for table `leavehistory`
 --
-ALTER TABLE `DHOD`
-  ADD KEY `sub` (`sub`);
+ALTER TABLE `leavehistory`
+  ADD PRIMARY KEY (`AppliedBy`,`AppliedTo`,`FromDate`,`ToDate`,`LeaveType`),
+  ADD KEY `AppliedTo` (`AppliedTo`);
 
 --
--- Indexes for table `HOD`
+-- Indexes for table `leavesallotted`
 --
-ALTER TABLE `HOD`
-  ADD KEY `sub` (`sub`);
+ALTER TABLE `leavesallotted`
+  ADD KEY `Designation_ID` (`Designation_ID`);
 
 --
--- Indexes for table `leaveHistory`
+-- Indexes for table `staffdetails`
 --
-ALTER TABLE `leaveHistory`
-  ADD PRIMARY KEY (`appliedBy`,`appliedTo`,`fromDate`,`toDate`,`leaveType`),
-  ADD KEY `appliedTo` (`appliedTo`);
-
---
--- Indexes for table `leavesAllotted`
---
-ALTER TABLE `leavesAllotted`
-  ADD KEY `dID` (`desgnID`);
-
---
--- Indexes for table `principal`
---
-ALTER TABLE `principal`
-  ADD KEY `sub` (`sub`);
-
---
--- Indexes for table `staffDetails`
---
-ALTER TABLE `staffDetails`
-  ADD PRIMARY KEY (`sub`),
-  ADD KEY `dID` (`desgnID`),
-  ADD KEY `deptID` (`deptID`);
-
---
--- Indexes for table `vprincipal`
---
-ALTER TABLE `vprincipal`
-  ADD KEY `sub` (`sub`);
+ALTER TABLE `staffdetails`
+  ADD PRIMARY KEY (`Google_UID`),
+  ADD KEY `Department_ID` (`Department_ID`),
+  ADD KEY `Designation_ID` (`Designation_ID`);
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `admin`
+-- Constraints for table `authority`
 --
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`sub`) REFERENCES `staffDetails` (`sub`);
+ALTER TABLE `authority`
+  ADD CONSTRAINT `authority_ibfk_1` FOREIGN KEY (`Google_UID`) REFERENCES `staffdetails` (`Google_UID`);
 
 --
--- Constraints for table `DHOD`
+-- Constraints for table `leavehistory`
 --
-ALTER TABLE `DHOD`
-  ADD CONSTRAINT `DHOD_ibfk_1` FOREIGN KEY (`sub`) REFERENCES `staffDetails` (`sub`);
+ALTER TABLE `leavehistory`
+  ADD CONSTRAINT `leavehistory_ibfk_1` FOREIGN KEY (`AppliedBy`) REFERENCES `staffdetails` (`Google_UID`),
+  ADD CONSTRAINT `leavehistory_ibfk_2` FOREIGN KEY (`AppliedTo`) REFERENCES `staffdetails` (`Google_UID`);
 
 --
--- Constraints for table `HOD`
+-- Constraints for table `leavesallotted`
 --
-ALTER TABLE `HOD`
-  ADD CONSTRAINT `HOD_ibfk_1` FOREIGN KEY (`sub`) REFERENCES `staffDetails` (`sub`);
+ALTER TABLE `leavesallotted`
+  ADD CONSTRAINT `leavesallotted_ibfk_1` FOREIGN KEY (`Designation_ID`) REFERENCES `designation` (`Designation_ID`);
 
 --
--- Constraints for table `leaveHistory`
+-- Constraints for table `staffdetails`
 --
-ALTER TABLE `leaveHistory`
-  ADD CONSTRAINT `leaveHistory_ibfk_1` FOREIGN KEY (`appliedBy`) REFERENCES `staffDetails` (`sub`),
-  ADD CONSTRAINT `leaveHistory_ibfk_2` FOREIGN KEY (`appliedTo`) REFERENCES `staffDetails` (`sub`);
-
---
--- Constraints for table `leavesAllotted`
---
-ALTER TABLE `leavesAllotted`
-  ADD CONSTRAINT `leavesAllotted_ibfk_1` FOREIGN KEY (`desgnID`) REFERENCES `designation` (`desgnID`);
-
---
--- Constraints for table `principal`
---
-ALTER TABLE `principal`
-  ADD CONSTRAINT `principal_ibfk_1` FOREIGN KEY (`sub`) REFERENCES `staffDetails` (`sub`);
-
---
--- Constraints for table `staffDetails`
---
-ALTER TABLE `staffDetails`
-  ADD CONSTRAINT `staffDetails_ibfk_1` FOREIGN KEY (`desgnID`) REFERENCES `designation` (`desgnID`),
-  ADD CONSTRAINT `staffDetails_ibfk_2` FOREIGN KEY (`deptID`) REFERENCES `dept` (`deptID`);
-
---
--- Constraints for table `vprincipal`
---
-ALTER TABLE `vprincipal`
-  ADD CONSTRAINT `vprincipal_ibfk_1` FOREIGN KEY (`sub`) REFERENCES `staffDetails` (`sub`);
+ALTER TABLE `staffdetails`
+  ADD CONSTRAINT `staffdetails_ibfk_1` FOREIGN KEY (`Department_ID`) REFERENCES `department` (`Department_ID`),
+  ADD CONSTRAINT `staffdetails_ibfk_2` FOREIGN KEY (`Designation_ID`) REFERENCES `designation` (`Designation_ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

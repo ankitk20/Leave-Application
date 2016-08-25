@@ -1,12 +1,12 @@
 CREATE TABLE Designation(
 	Designation_ID VARCHAR(3) PRIMARY KEY, 
 	Title VARCHAR(35) NOT NULL 
-)
+);
 
 CREATE TABLE Department(
 	Department_ID VARCHAR(5) PRIMARY KEY, 
 	Department_Name VARCHAR(20) NOT NULL UNIQUE
-)
+);
 
 CREATE TABLE StaffDetails(
 	Google_UID CHAR(21) PRIMARY KEY,
@@ -21,12 +21,8 @@ CREATE TABLE StaffDetails(
     CONSTRAINT CHECK (Contact LIKE '[0-9]'),
     FOREIGN KEY(Department_ID) REFERENCES Department(Department_ID),
     FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID)
-)
+);
 
-CREATE TABLE Admin(
-	Google_UID CHAR(21), 
-	FOREIGN KEY(Google_UID) REFERENCES StaffDetails(Google_UID)
-)
 
 CREATE TABLE LeavesAllotted(
 	Designation_ID VARCHAR(3), 
@@ -34,9 +30,9 @@ CREATE TABLE LeavesAllotted(
 	CasualLeave INT, 
 	Vacation INT,
 	EarlyGo INT, 
-	EarnedLeave INT
-	FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID), 
-)
+	EarnedLeave INT,
+	FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID)
+);
 
 CREATE TABLE LeaveHistory(
 	AppliedBy VARCHAR(21),
@@ -48,8 +44,12 @@ CREATE TABLE LeaveHistory(
 	`Status` VARCHAR(10) DEFAULT 'PENDING'
 )
 
+CREATE TABLE Authority(
+	Google_UID CHAR(21),
+	Title VARCHAR(20) NOT NULL, 
+	FOREIGN KEY(Google_UID) REFERENCES StaffDetails(Google_UID)
+)
 
 /*ALTER TABLE StaffDetails ADD FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID)
 ALTER TABLE StaffDetails ADD CHECK (Contact LIKE '[0-9]')*/
 ALTER TABLE LeaveHistory ADD CHECK (`Status` IN ('APPROVED','REJECTED','PENDING'))*/
-
