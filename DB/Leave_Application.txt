@@ -49,6 +49,8 @@ CREATE TABLE LeaveHistory(
 CREATE TABLE Authority(
 	Google_UID CHAR(21),
 	Title VARCHAR(20) NOT NULL, 
+	Department_ID VARCHAR(10),
+	FOREIGN KEY(Department_ID) REFERENCES Department(Department_ID),
 	FOREIGN KEY(Google_UID) REFERENCES StaffDetails(Google_UID)
 );
 
