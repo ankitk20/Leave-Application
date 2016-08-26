@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="../css/mdDateTimePicker.min.css">
     <script src="../js/moment.min.js"></script>
 
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
     <!-- Google OAuth -->
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
@@ -74,13 +77,13 @@
 							<h1 class="mdl-card__title-text">Apply for leave <?php echo $_SESSION['name'];?>!</h1>
 						</div>
 						<div class="mdl-card__supporting-text">
-							<form>
+							<form id="application">
                                 <div class="mdl-grid">
 
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
         								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-        									<input class="mdl-textfield__input" type="text" id="typeOfLeave" value="Select one" readonly tabIndex="-1">
+        									<input class="mdl-textfield__input" type="text" id="typeOfLeave" value="Select one" readonly tabIndex="-1" required>
         									<label for="typeOfLeave">
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
@@ -98,7 +101,7 @@
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
         								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-        									<input class="mdl-textfield__input" type="text" id="applyTo" value="Select one" readonly tabIndex="-1">
+        									<input class="mdl-textfield__input" type="text" id="applyTo" value="Select one" readonly tabIndex="-1" required>
         									<label for="applyTo">
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
@@ -113,14 +116,14 @@
 
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="fromDiv">
-                                            <input type="text" class="mdl-textfield__input" id="fromDate" readonly>
+                                            <input type="text" class="mdl-textfield__input" id="fromDate" readonly required>
                                             <label class="mdl-textfield__label" for="fromDate" id="fromLabel">From Date:</label>
                                         </div>
                                     </div>
 
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="toDiv">
-                                            <input type="text" class="mdl-textfield__input" id="toDate" readonly>
+                                            <input type="text" class="mdl-textfield__input" id="toDate" readonly required>
                                             <label class="mdl-textfield__label" for="fromDate" id="toLabel">To Date:</label>
                                         </div>
                                     </div>
@@ -144,7 +147,7 @@
 				            </form>
 
 						</div>
-						<div class="mdl-card__actions mdl-card--border">
+						<div id="apply" class="mdl-card__actions mdl-card--border">
 			               <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">Apply!</a>
 			            </div>
 					</div>
@@ -154,5 +157,6 @@
 		</main>
 	</div>
     <script src="../js/date.js"></script>
+    <script src="../js/saveform.js"></script>
 </body>
 </html>
