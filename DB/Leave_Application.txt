@@ -36,19 +36,21 @@ CREATE TABLE LeavesAllotted(
 
 CREATE TABLE LeaveHistory(
 	AppliedBy VARCHAR(21),
-	FOREIGN KEY(AppliedBy) REFERENCES StaffDetails(Google_UID), 
 	AppliedTo VARCHAR(21), 
-	FOREIGN KEY(AppliedTo) REFERENCES StaffDetails(Google_UID), 
 	FromDate Date, ToDate DATE, 
-	LeaveType VARCHAR(20), Note VARCHAR(300), PRIMARY KEY(AppliedBy, AppliedTo, FromDate, ToDate, LeaveType), 
-	`Status` VARCHAR(10) DEFAULT 'PENDING'
-)
+	LeaveType VARCHAR(20), 
+	Note VARCHAR(300),
+	`Status` VARCHAR(10) DEFAULT 'PENDING',
+	PRIMARY KEY(AppliedBy, AppliedTo, FromDate, ToDate, LeaveType), 
+	FOREIGN KEY(AppliedBy) REFERENCES StaffDetails(Google_UID), 
+	FOREIGN KEY(AppliedTo) REFERENCES StaffDetails(Google_UID)
+);
 
 CREATE TABLE Authority(
 	Google_UID CHAR(21),
 	Title VARCHAR(20) NOT NULL, 
 	FOREIGN KEY(Google_UID) REFERENCES StaffDetails(Google_UID)
-)
+);
 
 /*ALTER TABLE StaffDetails ADD FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID)
 ALTER TABLE StaffDetails ADD CHECK (Contact LIKE '[0-9]')*/
