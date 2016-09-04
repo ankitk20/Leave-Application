@@ -19,10 +19,10 @@
 	<script>
 		function onSignIn(googleUser) {
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'token.php');
+			xhr.open('POST', './php/token.php');
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onload = function() {
-			  window.location='form.php';
+			  window.location='./php/form.php';
 			};
 			xhr.send('idtoken=' + googleUser.getAuthResponse().id_token);
 		}

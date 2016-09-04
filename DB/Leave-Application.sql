@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 04, 2016 at 06:33 AM
+-- Host: localhost
+-- Generation Time: Sep 04, 2016 at 10:41 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -17,37 +17,44 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `leave-application`
+-- Database: `Leave-Application`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `authority`
+-- Table structure for table `Authority`
 --
 
-CREATE TABLE `authority` (
+CREATE TABLE `Authority` (
   `Google_UID` char(21) DEFAULT NULL,
   `Title` varchar(20) NOT NULL,
   `Department_ID` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `Authority`
+--
+
+INSERT INTO `Authority` (`Google_UID`, `Title`, `Department_ID`) VALUES
+('109269473201965754237', 'HOD', NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `department`
+-- Table structure for table `Department`
 --
 
-CREATE TABLE `department` (
+CREATE TABLE `Department` (
   `Department_ID` varchar(10) NOT NULL,
   `Department_Name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `department`
+-- Dumping data for table `Department`
 --
 
-INSERT INTO `department` (`Department_ID`, `Department_Name`) VALUES
+INSERT INTO `Department` (`Department_ID`, `Department_Name`) VALUES
 ('CE11', 'CE'),
 ('ETRX10', 'ETRX'),
 ('EXTC11', 'EXTC'),
@@ -57,19 +64,19 @@ INSERT INTO `department` (`Department_ID`, `Department_Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `designation`
+-- Table structure for table `Designation`
 --
 
-CREATE TABLE `designation` (
+CREATE TABLE `Designation` (
   `Designation_ID` varchar(3) NOT NULL,
   `Title` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `designation`
+-- Dumping data for table `Designation`
 --
 
-INSERT INTO `designation` (`Designation_ID`, `Title`) VALUES
+INSERT INTO `Designation` (`Designation_ID`, `Title`) VALUES
 ('101', 'Adhoc Asssitant Professor'),
 ('111', 'Assistant Professor'),
 ('121', 'Associate Professor'),
@@ -79,10 +86,10 @@ INSERT INTO `designation` (`Designation_ID`, `Title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `leavehistory`
+-- Table structure for table `LeaveHistory`
 --
 
-CREATE TABLE `leavehistory` (
+CREATE TABLE `LeaveHistory` (
   `AppliedBy` varchar(21) NOT NULL,
   `AppliedTo` varchar(21) NOT NULL,
   `FromDate` date NOT NULL,
@@ -93,19 +100,19 @@ CREATE TABLE `leavehistory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `leavehistory`
+-- Dumping data for table `LeaveHistory`
 --
 
-INSERT INTO `leavehistory` (`AppliedBy`, `AppliedTo`, `FromDate`, `ToDate`, `LeaveType`, `Note`, `Status`) VALUES
+INSERT INTO `LeaveHistory` (`AppliedBy`, `AppliedTo`, `FromDate`, `ToDate`, `LeaveType`, `Note`, `Status`) VALUES
 ('abc', 'abcd', '2016-08-11', '2016-08-20', 'Casual', 'Note', 'PENDING');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `leavesallotted`
+-- Table structure for table `LeavesAllotted`
 --
 
-CREATE TABLE `leavesallotted` (
+CREATE TABLE `LeavesAllotted` (
   `Designation_ID` varchar(3) DEFAULT NULL,
   `SickLeave` int(11) DEFAULT NULL,
   `CasualLeave` int(11) DEFAULT NULL,
@@ -115,10 +122,10 @@ CREATE TABLE `leavesallotted` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `leavesallotted`
+-- Dumping data for table `LeavesAllotted`
 --
 
-INSERT INTO `leavesallotted` (`Designation_ID`, `SickLeave`, `CasualLeave`, `Vacation`, `EarlyGo`, `EarnedLeave`) VALUES
+INSERT INTO `LeavesAllotted` (`Designation_ID`, `SickLeave`, `CasualLeave`, `Vacation`, `EarlyGo`, `EarnedLeave`) VALUES
 ('101', 5, 4, 0, 4, 7),
 ('111', 5, 4, 35, 4, 0),
 ('141', 5, 4, 0, 4, 15);
@@ -126,10 +133,10 @@ INSERT INTO `leavesallotted` (`Designation_ID`, `SickLeave`, `CasualLeave`, `Vac
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staffdetails`
+-- Table structure for table `StaffDetails`
 --
 
-CREATE TABLE `staffdetails` (
+CREATE TABLE `StaffDetails` (
   `Google_UID` char(21) NOT NULL,
   `Email` varchar(320) NOT NULL,
   `FirstName` varchar(35) NOT NULL,
@@ -141,10 +148,11 @@ CREATE TABLE `staffdetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `staffdetails`
+-- Dumping data for table `StaffDetails`
 --
 
-INSERT INTO `staffdetails` (`Google_UID`, `Email`, `FirstName`, `LastName`, `Designation_ID`, `DateOfJoin`, `Contact`, `Department_ID`) VALUES
+INSERT INTO `StaffDetails` (`Google_UID`, `Email`, `FirstName`, `LastName`, `Designation_ID`, `DateOfJoin`, `Contact`, `Department_ID`) VALUES
+('109269473201965754237', 'abhinav.valecha@ves.ac.in', 'Abhinav', 'Valecha', '101', '2016-09-28', '12345', 'IT01'),
 ('abc', 'pooja.shetty@ves.ac.in', 'Pooja', 'Shetty', '111', '2007-06-15', '9912399123', 'IT01'),
 ('abcd', 'parth.chandrana@ves.ac.in', 'Parth', 'Chandarana', '101', '2013-07-23', '9920666249', 'IT01');
 
@@ -153,42 +161,42 @@ INSERT INTO `staffdetails` (`Google_UID`, `Email`, `FirstName`, `LastName`, `Des
 --
 
 --
--- Indexes for table `authority`
+-- Indexes for table `Authority`
 --
-ALTER TABLE `authority`
+ALTER TABLE `Authority`
   ADD KEY `Google_UID` (`Google_UID`),
   ADD KEY `department_id` (`Department_ID`);
 
 --
--- Indexes for table `department`
+-- Indexes for table `Department`
 --
-ALTER TABLE `department`
+ALTER TABLE `Department`
   ADD PRIMARY KEY (`Department_ID`),
   ADD UNIQUE KEY `Department_Name` (`Department_Name`);
 
 --
--- Indexes for table `designation`
+-- Indexes for table `Designation`
 --
-ALTER TABLE `designation`
+ALTER TABLE `Designation`
   ADD PRIMARY KEY (`Designation_ID`);
 
 --
--- Indexes for table `leavehistory`
+-- Indexes for table `LeaveHistory`
 --
-ALTER TABLE `leavehistory`
+ALTER TABLE `LeaveHistory`
   ADD PRIMARY KEY (`AppliedBy`,`AppliedTo`,`FromDate`,`ToDate`,`LeaveType`),
   ADD KEY `AppliedTo` (`AppliedTo`);
 
 --
--- Indexes for table `leavesallotted`
+-- Indexes for table `LeavesAllotted`
 --
-ALTER TABLE `leavesallotted`
+ALTER TABLE `LeavesAllotted`
   ADD KEY `Designation_ID` (`Designation_ID`);
 
 --
--- Indexes for table `staffdetails`
+-- Indexes for table `StaffDetails`
 --
-ALTER TABLE `staffdetails`
+ALTER TABLE `StaffDetails`
   ADD PRIMARY KEY (`Google_UID`),
   ADD KEY `Department_ID` (`Department_ID`),
   ADD KEY `Designation_ID` (`Designation_ID`);
@@ -198,31 +206,31 @@ ALTER TABLE `staffdetails`
 --
 
 --
--- Constraints for table `authority`
+-- Constraints for table `Authority`
 --
-ALTER TABLE `authority`
-  ADD CONSTRAINT `authority_ibfk_1` FOREIGN KEY (`Google_UID`) REFERENCES `staffdetails` (`Google_UID`),
-  ADD CONSTRAINT `authority_ibfk_2` FOREIGN KEY (`DEPARTMENT_ID`) REFERENCES `department` (`Department_ID`);
+ALTER TABLE `Authority`
+  ADD CONSTRAINT `Authority_ibfk_1` FOREIGN KEY (`Google_UID`) REFERENCES `StaffDetails` (`Google_UID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Authority_ibfk_2` FOREIGN KEY (`Department_ID`) REFERENCES `Department` (`Department_ID`);
 
 --
--- Constraints for table `leavehistory`
+-- Constraints for table `LeaveHistory`
 --
-ALTER TABLE `leavehistory`
-  ADD CONSTRAINT `leavehistory_ibfk_1` FOREIGN KEY (`AppliedBy`) REFERENCES `staffdetails` (`Google_UID`),
-  ADD CONSTRAINT `leavehistory_ibfk_2` FOREIGN KEY (`AppliedTo`) REFERENCES `staffdetails` (`Google_UID`);
+ALTER TABLE `LeaveHistory`
+  ADD CONSTRAINT `LeaveHistory_ibfk_1` FOREIGN KEY (`AppliedBy`) REFERENCES `StaffDetails` (`Google_UID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `LeaveHistory_ibfk_2` FOREIGN KEY (`AppliedTo`) REFERENCES `StaffDetails` (`Google_UID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `leavesallotted`
+-- Constraints for table `LeavesAllotted`
 --
-ALTER TABLE `leavesallotted`
-  ADD CONSTRAINT `leavesallotted_ibfk_1` FOREIGN KEY (`Designation_ID`) REFERENCES `designation` (`Designation_ID`);
+ALTER TABLE `LeavesAllotted`
+  ADD CONSTRAINT `LeavesAllotted_ibfk_1` FOREIGN KEY (`Designation_ID`) REFERENCES `Designation` (`Designation_ID`);
 
 --
--- Constraints for table `staffdetails`
+-- Constraints for table `StaffDetails`
 --
-ALTER TABLE `staffdetails`
-  ADD CONSTRAINT `staffdetails_ibfk_1` FOREIGN KEY (`Department_ID`) REFERENCES `department` (`Department_ID`),
-  ADD CONSTRAINT `staffdetails_ibfk_2` FOREIGN KEY (`Designation_ID`) REFERENCES `designation` (`Designation_ID`);
+ALTER TABLE `StaffDetails`
+  ADD CONSTRAINT `StaffDetails_ibfk_1` FOREIGN KEY (`Department_ID`) REFERENCES `Department` (`Department_ID`),
+  ADD CONSTRAINT `StaffDetails_ibfk_2` FOREIGN KEY (`Designation_ID`) REFERENCES `Designation` (`Designation_ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
