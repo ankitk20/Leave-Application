@@ -19,6 +19,9 @@
 	<script src="../getmdl-select/getmdl-select.min.js"></script>
 	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css">
 
+	<!-- JQuery CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 	<!-- Google OAuth -->
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
@@ -69,9 +72,7 @@
 								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th>From</th><th>To</th><th>Days</th><th>Status</th></tr>
 							   </thead>
 							   <tbody>
-								  <tr><td class="mdl-data-table__cell--non-numeric">Casual</td><td>10/10/16</td><td>11/10/16</td><td>1</td><td>Approved</td></tr>
-								  <tr><td class="mdl-data-table__cell--non-numeric">Sick</td><td>10/10/16</td><td>11/10/16</td><td>1</td><td>Approved</td></tr>
-								  <tr><td class="mdl-data-table__cell--non-numeric">Vacation</td><td>10/10/16</td><td>11/10/16</td><td>1</td><td>Approved</td></tr>
+								 	
 							   </tbody>
 							   </table>
 						</div>
@@ -83,4 +84,5 @@
 		</main>
 	</div>
 </body>
+<script src="../js/getHistory.js"></script>
 </html>
