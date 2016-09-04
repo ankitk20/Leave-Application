@@ -1,6 +1,6 @@
-<!-- <?php
+<?php
     include_once 'loginCheck.php';
-?> -->
+?>
 <!DOCTYPE html>
 <html>
 <head>

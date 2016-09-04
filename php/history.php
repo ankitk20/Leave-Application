@@ -19,7 +19,7 @@
 	<script src="../getmdl-select/getmdl-select.min.js"></script>
 	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css">
 
-	<!-- JQuery CDN -->
+	<!-- jQuery CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 	<!-- Google OAuth -->
@@ -69,7 +69,7 @@
 						<div class="mdl-card__supporting-text">
 							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin: auto;">
 							   <thead>
-								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th>From</th><th>To</th><th>Days</th><th>Status</th></tr>
+								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th>From</th><th>To</th><th>Days</th><th>Applied to</th><th>Status</th></tr>
 							   </thead>
 							   <tbody>
 								 	
