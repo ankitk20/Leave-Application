@@ -51,13 +51,14 @@
 				</nav>
 			</div>
 		</header>
-		<div class="mdl-layout__drawer">
+		<!--<div class="mdl-layout__drawer">
 			<nav class="mdl-navigation">
 				<a class="mdl-navigation__link">Home</a>
 				<a class="mdl-navigation__link">About Us</a>
 				<a class="mdl-navigation__link">Contact</a>
 			</nav>
-		</div>
+		</div>-->
+		<?php include_once './drawer.php'; ?>
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
 			<div class="mdl-layout-spacer"></div>
@@ -75,6 +76,7 @@
 								 	
 							   </tbody>
 							   </table>
+							   <div class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 50%;"></div>
 						</div>
 					</div>
 				</div>
