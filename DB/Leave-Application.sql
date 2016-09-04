@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2016 at 09:05 AM
+-- Generation Time: Sep 04, 2016 at 06:33 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `authority` (
   `Google_UID` char(21) DEFAULT NULL,
-  `Title` varchar(20) NOT NULL
+  `Title` varchar(20) NOT NULL,
+  `Department_ID` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -38,9 +39,20 @@ CREATE TABLE `authority` (
 --
 
 CREATE TABLE `department` (
-  `Department_ID` varchar(5) NOT NULL,
+  `Department_ID` varchar(10) NOT NULL,
   `Department_Name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`Department_ID`, `Department_Name`) VALUES
+('CE11', 'CE'),
+('ETRX10', 'ETRX'),
+('EXTC11', 'EXTC'),
+('INST01', 'INST'),
+('IT01', 'IT');
 
 -- --------------------------------------------------------
 
@@ -52,6 +64,17 @@ CREATE TABLE `designation` (
   `Designation_ID` varchar(3) NOT NULL,
   `Title` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `designation`
+--
+
+INSERT INTO `designation` (`Designation_ID`, `Title`) VALUES
+('101', 'Adhoc Asssitant Professor'),
+('111', 'Assistant Professor'),
+('121', 'Associate Professor'),
+('131', 'Professor'),
+('141', 'Assistant Professor (Probation)');
 
 -- --------------------------------------------------------
 
@@ -69,6 +92,13 @@ CREATE TABLE `leavehistory` (
   `Status` varchar(10) DEFAULT 'PENDING'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `leavehistory`
+--
+
+INSERT INTO `leavehistory` (`AppliedBy`, `AppliedTo`, `FromDate`, `ToDate`, `LeaveType`, `Note`, `Status`) VALUES
+('abc', 'abcd', '2016-08-11', '2016-08-20', 'Casual', 'Note', 'PENDING');
+
 -- --------------------------------------------------------
 
 --
@@ -83,6 +113,15 @@ CREATE TABLE `leavesallotted` (
   `EarlyGo` int(11) DEFAULT NULL,
   `EarnedLeave` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `leavesallotted`
+--
+
+INSERT INTO `leavesallotted` (`Designation_ID`, `SickLeave`, `CasualLeave`, `Vacation`, `EarlyGo`, `EarnedLeave`) VALUES
+('101', 5, 4, 0, 4, 7),
+('111', 5, 4, 35, 4, 0),
+('141', 5, 4, 0, 4, 15);
 
 -- --------------------------------------------------------
 
@@ -102,6 +141,14 @@ CREATE TABLE `staffdetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `staffdetails`
+--
+
+INSERT INTO `staffdetails` (`Google_UID`, `Email`, `FirstName`, `LastName`, `Designation_ID`, `DateOfJoin`, `Contact`, `Department_ID`) VALUES
+('abc', 'pooja.shetty@ves.ac.in', 'Pooja', 'Shetty', '111', '2007-06-15', '9912399123', 'IT01'),
+('abcd', 'parth.chandrana@ves.ac.in', 'Parth', 'Chandarana', '101', '2013-07-23', '9920666249', 'IT01');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -109,7 +156,8 @@ CREATE TABLE `staffdetails` (
 -- Indexes for table `authority`
 --
 ALTER TABLE `authority`
-  ADD KEY `Google_UID` (`Google_UID`);
+  ADD KEY `Google_UID` (`Google_UID`),
+  ADD KEY `department_id` (`Department_ID`);
 
 --
 -- Indexes for table `department`
@@ -153,7 +201,8 @@ ALTER TABLE `staffdetails`
 -- Constraints for table `authority`
 --
 ALTER TABLE `authority`
-  ADD CONSTRAINT `authority_ibfk_1` FOREIGN KEY (`Google_UID`) REFERENCES `staffdetails` (`Google_UID`);
+  ADD CONSTRAINT `authority_ibfk_1` FOREIGN KEY (`Google_UID`) REFERENCES `staffdetails` (`Google_UID`),
+  ADD CONSTRAINT `authority_ibfk_2` FOREIGN KEY (`DEPARTMENT_ID`) REFERENCES `department` (`Department_ID`);
 
 --
 -- Constraints for table `leavehistory`
