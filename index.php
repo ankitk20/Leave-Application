@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	if(isset($_SESSION['sub']))
+		header('Location: ./php/form.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +18,9 @@
 	<script src="./mdl/material.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+	<!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 	<!-- Google OAuth -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="966732769863-vbk66rqc2gaekf6ad7sf0uk64cei4gee.apps.googleusercontent.com">
@@ -26,6 +34,14 @@
 			};
 			xhr.send('idtoken=' + googleUser.getAuthResponse().id_token);
 		}
+		$(document).ready(function(){
+			$(".mdl-spinner").hide();
+			$('.g-signin2').on('click',function(){
+				$(".g-signin2").hide();
+				$(".mdl-spinner").show();
+				$(".mdl-spinner").addClass("is-active");
+			});
+		});
 	</script>
 </head>
 <body>
@@ -39,13 +55,14 @@
 				</nav>
 			</div>
 		</header>
-		<div class="mdl-layout__drawer">
+		<!--<div class="mdl-layout__drawer">
 			<nav class="mdl-navigation">
 				<a class="mdl-navigation__link" href="/Leave-Application/">Home</a>
 				<a class="mdl-navigation__link">About Us</a>
 				<a class="mdl-navigation__link">Contact</a>
 			</nav>
-		</div>
+		</div>-->
+		<?php include_once './php/drawer.php'; ?>
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
 				<div class="mdl-layout-spacer"></div>
@@ -80,8 +97,8 @@
 							</ul>
 						</div>
 						<div class="mdl-card__actions mdl-card--border">
-			               <!-- <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">Login to get started!</a> -->
-			               <div class="g-signin2" data-onsuccess="onSignIn"></div>
+							<div class="g-signin2" data-onsuccess="onSignIn"></div>
+							<div class="mdl-spinner mdl-js-spinner"></div>
 			            </div>
 					</div>
 				</div>
