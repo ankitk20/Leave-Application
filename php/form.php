@@ -6,15 +6,11 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>VESIT Leave Application!</title>
-	<!-- CDN based MDL (will be used when deployed)
+    
+	<!-- Google MDL -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>-->
-
-	<!-- Local MDL (ONLY FOR TESTING PURPOSES) -->
-	<link rel="stylesheet" href="../mdl/material.min.css">
-	<script src="../mdl/material.min.js"></script>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
     <!-- getmdl-select (used for select input in MDL) -->
 	<script src="../getmdl-select/getmdl-select.min.js"></script>
@@ -83,7 +79,7 @@
 
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
-        								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+        								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
         									<input class="mdl-textfield__input" type="text" id="typeOfLeave" value="Select one" readonly tabIndex="-1" required>
         									<label for="typeOfLeave">
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
@@ -101,7 +97,7 @@
 
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
 
-        								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+        								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth getmdl-select__fix-height">
         									<input class="mdl-textfield__input" type="text" id="applyTo" value="Select one" readonly tabIndex="-1" required>
         									<label for="applyTo">
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
