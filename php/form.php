@@ -6,15 +6,14 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>VESIT Leave Application!</title>
-    
+
 	<!-- Google MDL -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
 	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
-    <!-- getmdl-select (used for select input in MDL) -->
-	<script src="../getmdl-select/getmdl-select.min.js"></script>
-	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css">
+    <!-- getmdl-select (used for select input in MDL)
+	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css"> -->
 
     <!-- Date Picker -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
@@ -74,7 +73,8 @@
 							<h1 class="mdl-card__title-text">Apply for leave <?php echo $_SESSION['name'];?>!</h1>
 						</div>
 						<div class="mdl-card__supporting-text">
-							<form id="application">
+                            <div class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 49%;"></div>
+							<form id="application" class="hidden">
                                 <div class="mdl-grid">
 
                                     <div class="mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-typography--text-center">
@@ -85,12 +85,12 @@
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
         									<label for="typeOfLeave" class="mdl-textfield__label">Type of leave:</label>
-        									<ul for="typeOfLeave" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+        									<!--<ul for="typeOfLeave" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
         										<li class="mdl-menu__item">Casual</li>
         										<li class="mdl-menu__item">Sick</li>
         										<li class="mdl-menu__item">Maternity</li>
         										<li class="mdl-menu__item">Hospital</li>
-        									</ul>
+        									</ul>-->
         								</div>
 
     								</div>
@@ -103,10 +103,10 @@
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
         									<label for="applyTo" class="mdl-textfield__label">Apply to:</label>
-        									<ul for="applyTo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+        									<!--<ul for="applyTo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
         										<li class="mdl-menu__item">HOD</li>
         										<li class="mdl-menu__item">Deputy HOD</li>
-        									</ul>
+        									</ul>-->
         								</div>
 
                                     </div>
@@ -154,6 +154,8 @@
 		</main>
 	</div>
     <script src="../js/date.js"></script>
+    <script src="../js/getForm.js"></script>
     <script src="../js/saveform.js"></script>
+    <!-- <script src="../getmdl-select/getmdl-select.min.js"></script> -->
 </body>
 </html>
