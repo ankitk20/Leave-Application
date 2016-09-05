@@ -61,7 +61,7 @@
 							<H1 class="mdl-card__title-text"><?php echo $_SESSION['name']."'s "; ?>Leave history!</H1>
 						</div>
 						<div class="mdl-card__supporting-text">
-							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin: auto;">
+							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp hidden" style="margin: auto;">
 							   <thead>
 								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th>From</th><th>To</th><th>Days</th><th>Applied to</th><th>Status</th></tr>
 							   </thead>
@@ -69,7 +69,7 @@
 								 	
 							   </tbody>
 							   </table>
-							   <div class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 50%;"></div>
+							   <div class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 49%;"></div>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,4 @@
-$(function(){
-	$('table').hide();
+$(document).ready(function(){
 	$.ajax({
 		url:"../php/getHistory.php",
 		datatype:"json",
@@ -13,9 +12,9 @@ $(function(){
 				});
 			});
 			$('.mdl-spinner').hide();
-			$('table').show();
+			$('table').removeClass('hidden');
 		},
-		error: function($result){
+		error:function($result){
 			alert("he maa!! maataji.");
 		}
 	});
