@@ -6,18 +6,14 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>VESIT Leave Application!</title>
-	<!-- CDN based MDL (will be used when deployed)
+	
+	<!-- Google MDL -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>-->
+	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
-	<!-- Local MDL (ONLY FOR TESTING PURPOSES) -->
-	<link rel="stylesheet" href="../mdl/material.min.css">
-	<script src="../mdl/material.min.js"></script>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<!-- getmdl-select (used for select input in MDL) -->
-	<script src="../getmdl-select/getmdl-select.min.js"></script>
-	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css">
+	<!-- jQuery CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 	<!-- Google OAuth -->
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
@@ -48,13 +44,14 @@
 				</nav>
 			</div>
 		</header>
-		<div class="mdl-layout__drawer">
+		<!--<div class="mdl-layout__drawer">
 			<nav class="mdl-navigation">
 				<a class="mdl-navigation__link">Home</a>
 				<a class="mdl-navigation__link">About Us</a>
 				<a class="mdl-navigation__link">Contact</a>
 			</nav>
-		</div>
+		</div>-->
+		<?php include_once './drawer.php'; ?>
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
 			<div class="mdl-layout-spacer"></div>
@@ -64,16 +61,15 @@
 							<H1 class="mdl-card__title-text"><?php echo $_SESSION['name']."'s "; ?>Leave history!</H1>
 						</div>
 						<div class="mdl-card__supporting-text">
-							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin: auto;">
+							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp hidden" style="margin: auto;">
 							   <thead>
-								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th>From</th><th>To</th><th>Days</th><th>Status</th></tr>
+								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th>From</th><th>To</th><th>Days</th><th>Applied to</th><th>Status</th></tr>
 							   </thead>
 							   <tbody>
-								  <tr><td class="mdl-data-table__cell--non-numeric">Casual</td><td>10/10/16</td><td>11/10/16</td><td>1</td><td>Approved</td></tr>
-								  <tr><td class="mdl-data-table__cell--non-numeric">Sick</td><td>10/10/16</td><td>11/10/16</td><td>1</td><td>Approved</td></tr>
-								  <tr><td class="mdl-data-table__cell--non-numeric">Vacation</td><td>10/10/16</td><td>11/10/16</td><td>1</td><td>Approved</td></tr>
+								 	
 							   </tbody>
 							   </table>
+							   <div class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 49%;"></div>
 						</div>
 					</div>
 				</div>
@@ -83,4 +79,5 @@
 		</main>
 	</div>
 </body>
+<script src="../js/getHistory.js"></script>
 </html>

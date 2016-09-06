@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 04, 2016 at 10:41 AM
+-- Generation Time: Sep 05, 2016 at 10:38 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -28,16 +28,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Authority` (
   `Google_UID` char(21) DEFAULT NULL,
-  `Title` varchar(20) NOT NULL,
-  `Department_ID` varchar(10) DEFAULT NULL
+  `Title` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Authority`
 --
 
-INSERT INTO `Authority` (`Google_UID`, `Title`, `Department_ID`) VALUES
-('109269473201965754237', 'HOD', NULL);
+INSERT INTO `Authority` (`Google_UID`, `Title`) VALUES
+('109269473201965754237', 'HOD'),
+('abc', 'DHOD');
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,11 @@ CREATE TABLE `LeaveHistory` (
 --
 
 INSERT INTO `LeaveHistory` (`AppliedBy`, `AppliedTo`, `FromDate`, `ToDate`, `LeaveType`, `Note`, `Status`) VALUES
-('abc', 'abcd', '2016-08-11', '2016-08-20', 'Casual', 'Note', 'PENDING');
+('109269473201965754237', 'abc', '2016-09-01', '2016-09-02', 'abcd', '1234', 'PENDING'),
+('109269473201965754237', 'abc', '2016-09-14', '2016-09-17', 'abcdefgh', '<script>alert();</script>', 'PENDING'),
+('abc', '109269473201965754237', '2016-09-08', '2016-09-16', 'abcd', '1234', 'PENDING'),
+('abc', 'abcd', '2016-02-25', '2016-03-25', 'casual', 'note', 'PENDING'),
+('abc', 'abcd', '2016-09-11', '2016-09-11', 'cas', 'a', 'PENDING');
 
 -- --------------------------------------------------------
 
@@ -114,18 +118,18 @@ INSERT INTO `LeaveHistory` (`AppliedBy`, `AppliedTo`, `FromDate`, `ToDate`, `Lea
 
 CREATE TABLE `LeavesAllotted` (
   `Designation_ID` varchar(3) DEFAULT NULL,
-  `SickLeave` int(11) DEFAULT NULL,
-  `CasualLeave` int(11) DEFAULT NULL,
+  `Sick Leave` int(11) DEFAULT NULL,
+  `Casual Leave` int(11) DEFAULT NULL,
   `Vacation` int(11) DEFAULT NULL,
-  `EarlyGo` int(11) DEFAULT NULL,
-  `EarnedLeave` int(11) DEFAULT NULL
+  `Early Go` int(11) DEFAULT NULL,
+  `Earned Leave` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `LeavesAllotted`
 --
 
-INSERT INTO `LeavesAllotted` (`Designation_ID`, `SickLeave`, `CasualLeave`, `Vacation`, `EarlyGo`, `EarnedLeave`) VALUES
+INSERT INTO `LeavesAllotted` (`Designation_ID`, `Sick Leave`, `Casual Leave`, `Vacation`, `Early Go`, `Earned Leave`) VALUES
 ('101', 5, 4, 0, 4, 7),
 ('111', 5, 4, 35, 4, 0),
 ('141', 5, 4, 0, 4, 15);
@@ -152,8 +156,8 @@ CREATE TABLE `StaffDetails` (
 --
 
 INSERT INTO `StaffDetails` (`Google_UID`, `Email`, `FirstName`, `LastName`, `Designation_ID`, `DateOfJoin`, `Contact`, `Department_ID`) VALUES
-('109269473201965754237', 'abhinav.valecha@ves.ac.in', 'Abhinav', 'Valecha', '101', '2016-09-28', '12345', 'IT01'),
-('abc', 'pooja.shetty@ves.ac.in', 'Pooja', 'Shetty', '111', '2007-06-15', '9912399123', 'IT01'),
+('109269473201965754237', 'abhinav.valecha@ves.ac.in', 'Abhinav', 'Valecha', '101', '2016-09-28', '1234', 'CE11'),
+('abc', 'pooja.shetty@ves.ac.in', 'Pooja', 'Shetty', '111', '2007-06-15', '9912399123', 'CE11'),
 ('abcd', 'parth.chandrana@ves.ac.in', 'Parth', 'Chandarana', '101', '2013-07-23', '9920666249', 'IT01');
 
 --
@@ -164,8 +168,7 @@ INSERT INTO `StaffDetails` (`Google_UID`, `Email`, `FirstName`, `LastName`, `Des
 -- Indexes for table `Authority`
 --
 ALTER TABLE `Authority`
-  ADD KEY `Google_UID` (`Google_UID`),
-  ADD KEY `department_id` (`Department_ID`);
+  ADD KEY `Google_UID` (`Google_UID`);
 
 --
 -- Indexes for table `Department`
@@ -209,8 +212,7 @@ ALTER TABLE `StaffDetails`
 -- Constraints for table `Authority`
 --
 ALTER TABLE `Authority`
-  ADD CONSTRAINT `Authority_ibfk_1` FOREIGN KEY (`Google_UID`) REFERENCES `StaffDetails` (`Google_UID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Authority_ibfk_2` FOREIGN KEY (`Department_ID`) REFERENCES `Department` (`Department_ID`);
+  ADD CONSTRAINT `Authority_ibfk_1` FOREIGN KEY (`Google_UID`) REFERENCES `StaffDetails` (`Google_UID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `LeaveHistory`
