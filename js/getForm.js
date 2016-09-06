@@ -33,12 +33,13 @@ $(document).ready(function(){
 		}
 	})).then(function(){
 		if(error == 0){
+			$('.mdl-spinner').hide();
 		 	$('#application').removeClass('hidden');
 			initializeMdlSelect();
 		}
 		else{
+			$('.mdl-spinner').hide();
 			$('.mdl-card__supporting-text').append("Seems like DB didn't return much");
 		}
-		$('.mdl-spinner').hide();
 	});
 });
