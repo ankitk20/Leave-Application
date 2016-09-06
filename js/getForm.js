@@ -17,7 +17,7 @@ loadLeaveTypes = $.ajax({
 	success:function($leaveTypes){
 		$(".mdl-textfield__label[for='typeOfLeave']").after('<ul for="typeOfLeave" class="mdl-menu mdl-menu--bottom-left mdl-js-menu"></ul>');
 		$.each($.parseJSON($leaveTypes),function(column,value){
-			$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item">'+column+'</li>');
+			$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item" disabled>'+column+'</li>');
 		});
 	},
 	error:function($leaveTypes){
