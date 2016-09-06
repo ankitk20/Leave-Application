@@ -1,20 +1,21 @@
-$(document).ready(function(){
-
-	$(".mdl-button").on("click",function(){
-		$("tbody").find("tr").click(function(){
-			$fromDate=$(this).find("tr:nth-child(2)").text();
-			console.log($fromDate);
-
+function cancelLeave(){
+	console.log('inside cancel');
+	$("button").on("click",function(){
+		$appliedTo = $(this).parent().parent().attr('value');
+		$fromDate = moment(new Date($(this).parent().parent().children('td').eq(1).text())).format('YYYY/MM/DD');
+		console.log($appliedTo);
+		console.log($fromDate);
 		$.ajax({
 			url:"../php/cancelLeave.php",
 			type:"post",
-			data:{FromDate:$fromDate},
+			data:{fromDate:$fromDate,
+				AppliedTo:$appliedTo},
 			success:function($feedback){
                       console.log($.parseJSON($feedback));	
 					},
-			error:function(){
+			error:function($feedback){
 				  	console.log($.parseJSON($feedback));
 			      }
-		})
-	})
-});
+		});
+	});
+};

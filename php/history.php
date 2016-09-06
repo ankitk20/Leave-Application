@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
 	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
+	<!-- Moment JS -->
+	<script src="../js/moment.min.js"></script>
+
 	<!-- jQuery CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
@@ -55,7 +58,7 @@
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
 			<div class="mdl-layout-spacer"></div>
-				<div class="mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--10-col-desktop">
+				<div class="mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--11-col-desktop">
 					<div class="mdl-card mdl-shadow--8dp" style="width: 100%;">
 						<div class="mdl-card__title">
 							<H1 class="mdl-card__title-text"><?php echo $_SESSION['name']."'s "; ?>Leave history!</H1>
@@ -63,7 +66,7 @@
 						<div class="mdl-card__supporting-text">
 							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp hidden" style="margin: auto;">
 							   <thead>
-								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th>From</th><th>To</th><th>Days</th><th>Applied to</th><th>Status</th></tr>
+								  <tr><th class="mdl-data-table__cell--non-numeric">Type</th><th class="mdl-data-table__cell--non-numeric">From</th><th class="mdl-data-table__cell--non-numeric">To</th><th class="mdl-data-table__cell--non-numeric">Days</th><th class="mdl-data-table__cell--non-numeric">Applied to</th><th class="mdl-data-table__cell--non-numeric">Status</th><th class="mdl-data-table__cell--non-numeric">Cancel</th></tr>
 							   </thead>
 							   <tbody>
 								 	
