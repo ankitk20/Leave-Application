@@ -80,4 +80,5 @@
 	</div>
 </body>
 <script src="../js/getHistory.js"></script>
+<script src="../js/cancelLeave.js"></script>
 </html>

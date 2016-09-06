@@ -8,11 +8,13 @@
 		$statement->execute();
 		$statement->bind_result($LeaveType,$FromDate,$ToDate,$AppliedTo,$Status);
 		$statement->fetch();
-		$datediff=date_diff( date_create($FromDate),date_create($ToDate))->invert+2;
+		$datediff=date_diff( date_create($FromDate),date_create($ToDate));
+		$datediff=$datediff->format("%R%a days");
 		$final = array(array($LeaveType,$FromDate,$ToDate,$datediff,$AppliedTo,$Status));
 		while( $statement->fetch() ){
-			$datediff=date_diff( date_create($FromDate),date_create($ToDate))->invert+2;
-			array_push($final,array($LeaveType,$FromDate,$ToDate,$datediff,$AppliedTo,$Status));
+			$datediff=date_diff( date_create($FromDate),date_create($ToDate));
+			$datediff=$datediff->format("%R%a days");
+			array_push($final,array($LeaveType,$FromDate,$ToDate,$datediff+1,$AppliedTo,$Status));
 		}
 		echo json_encode($final);
 		$statement->close();
