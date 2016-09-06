@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var error = 0
+	var error = 0;
 	$.when($.ajax({
 		url:"../php/getType.php",
 		datatype:"json",
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		error:function($leaveTypes){
 			console.log('IDK whats wrong');
 		}
-	})).then($.when($.ajax({
+	}),$.ajax({
 		url:"../php/applyTo.php",
 		datatype:"json",
 		type:"post",
@@ -40,5 +40,5 @@ $(document).ready(function(){
 			$('.mdl-card__supporting-text').append("Seems like DB didn't return much");
 		}
 		$('.mdl-spinner').hide();
-	}));
+	});
 });
