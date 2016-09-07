@@ -7,6 +7,7 @@ $(document).ready(function(){
 			$.each($.parseJSON($row),function(column,value){
 				if(value['ID'] == null){
 					console.log('EMPTY');
+					$("tbody").append('<tr><td style="text-align: center;" colspan="7">No leave applications to show.</td></tr>');
 				}
 				else{
 					$("tbody").append("<tr></tr>");
