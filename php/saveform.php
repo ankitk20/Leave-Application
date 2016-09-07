@@ -20,13 +20,31 @@
 		$statement->close();
 		$row = $result->fetch_assoc();
 		if(isset($row[$type])){
-			if((((strtotime($toDate) - strtotime($fromDate))/86400)+1) < $row[$type]){
-				$query = "INSERT INTO LeaveHistory (AppliedBy,AppliedTo,FromDate,ToDate,LeaveType,Note) VALUES (?,?,?,?,?,?)";
+			if((((strtotime($toDate) - strtotime($fromDate))/86400)+1) <= $row[$type]){
+				$query = "SELECT * FROM LeaveHistory WHERE AppliedBy=? AND ((FromDate<=? AND ToDate>=?) OR (FromDate<=? AND ToDate>=?) OR (FromDate<=? AND ToDate>=?) OR (FromDate>=? AND ToDate<=?)) AND Status!='REJECTED'";
 				$statement = $connection->prepare($query);
-				$statement->bind_param("ssssss",$appliedBy,$appliedTo,$fromDate,$toDate,$type,$note);
+				$statement->bind_param('sssssssss',$appliedBy,$fromDate,$toDate,$fromDate,$fromDate,$toDate,$toDate,$fromDate,$toDate);
 				$statement->execute();
-				echo $statement->affected_rows;
+				$dateCheck = $statement->get_result();
 				$statement->close();
+				if($dateCheck->num_rows == 0){
+					$query = "SELECT * FROM StaffDetails WHERE Google_UID=? AND Department_ID=(SELECT Department_ID FROM StaffDetails WHERE Google_UID=?) AND Google_UID IN (SELECT Google_UID FROM Authority)";
+					$statement = $connection->prepare($query);
+					$statement->bind_param('ss',$appliedTo,$appliedBy);
+					$statement->execute();
+					if(($statement->get_result())->num_rows == 1){
+						$statement->close();
+						$query = "INSERT INTO LeaveHistory (AppliedBy,AppliedTo,FromDate,ToDate,LeaveType,Note) VALUES (?,?,?,?,?,?)";
+						$statement = $connection->prepare($query);
+						$statement->bind_param("ssssss",$appliedBy,$appliedTo,$fromDate,$toDate,$type,$note);
+						$statement->execute();
+						echo $statement->affected_rows;
+						$statement->close();
+					}
+				}
+				else{
+					echo 'already taken leave on these dates';
+				}
 			}
 			else{
 				echo 'out of limit';
