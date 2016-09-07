@@ -147,7 +147,7 @@
 						</div>
 						<div id="apply" class="mdl-card__actions mdl-card--border">
 			               <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">Apply!</a>
-                            <div id="applySpinner"class="mdl-spinner mdl-js-spinner" style="margin-left: 3%;"></div>
+                            <div id="applySpinner" class="mdl-spinner mdl-js-spinner" style="margin-left: 3%;"></div>
                         </div>
 					</div>
 				</div>

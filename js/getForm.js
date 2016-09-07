@@ -5,9 +5,11 @@ $(document).ready(function(){
 		datatype:"json",
 		type:"post",
 		success:function($leaveTypes){
+			console.log($leaveTypes);
 			$(".mdl-textfield__label[for='typeOfLeave']").after('<ul for="typeOfLeave" class="mdl-menu mdl-menu--bottom-left mdl-js-menu"></ul>');
 			$.each($.parseJSON($leaveTypes),function(column,value){
-				$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item">'+column+'</li>');
+				if(value>0)
+					$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item">'+column+'</li>');
 			});
 		},
 		error:function($leaveTypes){
@@ -33,14 +35,13 @@ $(document).ready(function(){
 		}
 	})).then(function(){
 		if(error == 0){
-			$('.mdl-spinner').hide();
+			$('#formSpinner').hide();
 		 	$('#application').removeClass('hidden');
 			initializeMdlSelect();
 		}
 		else{
-			$('.mdl-spinner').hide();
+			$('#formSpinner').hide();
 			$('.mdl-card__supporting-text').append("Seems like DB didn't return much");
 		}
-		$('#formSpinner').hide();
 	});
 });
