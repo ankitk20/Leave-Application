@@ -5,28 +5,36 @@ $(document).ready(function(){
 		type:"post",
 		success:function($row){
 			$.each($.parseJSON($row),function(column,value){
-				$("tbody").append("<tr></tr>");
-				$.each(value, function(col,val){
-					if(col == 'ID'){
-						$("tbody>tr:eq(" + column + ")").attr('value',val);
-						return true;
-					}
-					if(col == 'From'){
-						$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
-						return true;
-					}
-					if(col == 'To'){
-						$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
-						return true;
-					}
-					$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
-					if(col == 'Status'){
-						if(val == 'PENDING')
-							$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect'>Cancel</button></td>");
-						if(val == 'ACCEPTED' || val == 'REJECTED')
-							$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect' disabled>Cancel</button></td>");
-					}
-				});
+				if(value['ID'] == null){
+					console.log('EMPTY HISTORY');
+				}
+				else{
+					$("tbody").append("<tr></tr>");
+					$.each(value, function(col,val){
+						switch(col){
+							case 'ID':{
+								$("tbody>tr:eq(" + column + ")").attr('value',val);
+								break;
+							}
+							case 'To':
+							case 'From':{
+								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
+								break;
+							}
+							case 'Status':{
+								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+								if(val == 'PENDING')
+									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect'>Cancel</button></td>");
+								else
+									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect' disabled>Cancel</button></td>");
+								break;
+							}
+							default:{
+								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+							}
+						}
+					});
+				}
 			});
 			$('.mdl-spinner').hide();
 			$('table').removeClass('hidden');
