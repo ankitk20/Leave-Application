@@ -14,7 +14,7 @@
 
     <!-- getmdl-select (used for select input in MDL) -->
 	<link rel="stylesheet" href="../getmdl-select/getmdl-select.min.css">
-    <script src="../getmdl-select/getmdl-select.min.js"></script>
+    <script src="../getmdl-select/getmdl-select.js"></script>
 
     <!-- Date Picker -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
