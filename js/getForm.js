@@ -42,4 +42,4 @@ $(document).ready(function(){
 			$('.mdl-card__supporting-text').append("Seems like DB didn't return much");
 		}
 	});
-}
+});
