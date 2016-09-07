@@ -6,23 +6,19 @@
 	$dbName = "Leave-Application";
 	$google_UID=$_SESSION["sub"];
 
-	$query="SELECT AppliedBy,FromDate,ToDate,LeaveType,Note FROM LeaveHistory WHERE AppliedTo=?";
+	$query="SELECT l.AppliedBy,l.FromDate,l.ToDate,l.LeaveType,s.FirstName,s.LastName FROM LeaveHistory l,StaffDetails s WHERE AppliedTo=? AND l.AppliedBy=s.Google_UID AND Status='PENDING'";
 	$connection = new mysqli($host,$user,$password,$dbName);
 	$statement=$connection->prepare($query);
 	$statement->bind_param("s",$google_UID);
 	$statement->execute();
-	$statement->bind_result($AppliedBy,$FromDate,$ToDate,$LeaveType,$Note);
+	$statement->bind_result($AppliedBy,$FromDate,$ToDate,$LeaveType,$FirstName,$LastName);
 	$statement->fetch();
-	$datediff=date_diff( date_create($FromDate),date_create($ToDate));
-	$datediff=$datediff->format("%R%a days");
-	$final = array(array($AppliedBy,$FromDate,$ToDate,$datediff+1,$LeaveType,$Note));
+	$datediff = ((strtotime($ToDate) - strtotime($FromDate))/(86400)+1);
+	$final = array(array('AppliedBy'=>$FirstName.' '.$LastName,'From'=>$FromDate,'To'=>$ToDate,'NoOfDays'=>$datediff,'Type'=>$LeaveType,'ID'=>$AppliedBy));
 	while( $statement->fetch() ){
-		$datediff=date_diff( date_create($FromDate),date_create($ToDate));
-		$datediff=$datediff->format("%R%a days");
-		array_push($final,array($AppliedBy,$FromDate,$ToDate,$datediff+1,$LeaveType,$Note));
+		$datediff = ((strtotime($ToDate) - strtotime($FromDate))/(86400)+1);
+		array_push($final,array('AppliedBy'=>$FirstName.' '.$LastName,'From'=>$FromDate,'To'=>$ToDate,'NoOfDays'=>$datediff,'Type'=>$LeaveType,'ID'=>$AppliedBy));
 	}
 	echo json_encode($final);
-
 	$statement->close();
-
  ?>
