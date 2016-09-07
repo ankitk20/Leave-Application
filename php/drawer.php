@@ -10,7 +10,7 @@
 		$statement->execute();
 		$result = $statement->get_result();
 		if($result->num_rows == 1){
-			echo '<a class="mdl-navigation__link">Staff leaves</a>';
+			echo '<a class="mdl-navigation__link" href="./application.php">Staff leaves</a>';
 		}
 		$statement->close();
 		$statement = $conn->prepare("SELECT * FROM Admin WHERE Google_UID=?");
