@@ -1,11 +1,13 @@
-$(function(){
+$(document).ready(function(){
 	$("#apply").on("click",function(){
-		$applyTo = $("#applyTo").val();
-		$fromDate = $("#fromDate").val();
-		$toDate = $("#toDate").val();
+		$("#apply>a").addClass("hidden");
+		$("#applySpinner").addClass("is-active");
+		$applyTo = $('li:contains("'+$("#applyTo").val()+'")').attr('id');
+		$fromDate = moment(new Date($("#fromDate").val())).format("YYYY/MM/DD");
+		$toDate = moment(new Date($("#toDate").val())).format("YYYY/MM/DD");
 		$type = $("#typeOfLeave").val();
 		$note = $("#note").val();
-		if( $applyTo && $fromDate && $type){
+		if($applyTo && $fromDate && $type &&toDate){
 			$.ajax({
 				url: "../php/saveform.php",
 				type:"POST",
@@ -18,7 +20,7 @@ $(function(){
 				},
 				success: function($result){
 					console.log($result);
-					if($result == -1)
+					if($result == 1)
 					window.location.href = "history.php";
 				},
 				error: function(){

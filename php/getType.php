@@ -8,6 +8,11 @@
 		$result = $statement->get_result();
 		$row = $result->fetch_assoc();
 		unset($row['Designation_ID']);
+		foreach ($row as $key => $value) {
+			if ($value == 0) {
+				unset($row[$key]);
+			}
+		}
 		echo json_encode($row);
 	}
 ?>

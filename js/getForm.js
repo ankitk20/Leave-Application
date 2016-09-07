@@ -5,9 +5,11 @@ $(document).ready(function(){
 		datatype:"json",
 		type:"post",
 		success:function($leaveTypes){
+			console.log($leaveTypes);
 			$(".mdl-textfield__label[for='typeOfLeave']").after('<ul for="typeOfLeave" class="mdl-menu mdl-menu--bottom-left mdl-js-menu"></ul>');
 			$.each($.parseJSON($leaveTypes),function(column,value){
-				$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item">'+column+'</li>');
+				if(value>0)
+					$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item">'+column+'</li>');
 			});
 		},
 		error:function($leaveTypes){
@@ -21,7 +23,7 @@ $(document).ready(function(){
 			if($.parseJSON($applyTo)[0] != null){
 				$(".mdl-textfield__label[for='applyTo']").after('<ul for="applyTo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu"></ul>');
 				$.each($.parseJSON($applyTo),function(column,value){
-					$("ul[for='applyTo']").append('<li class="mdl-menu__item">'+value['FirstName']+' '+value['LastName']+' ('+value['Title']+')</li>');
+					$("ul[for='applyTo']").append('<li class="mdl-menu__item" id="'+value['Google_UID']+'">'+value['FirstName']+' '+value['LastName']+' ('+value['Title']+')</li>');
 				});
 			}
 			else{
@@ -33,12 +35,12 @@ $(document).ready(function(){
 		}
 	})).then(function(){
 		if(error == 0){
-			$('.mdl-spinner').hide();
+			$('#formSpinner').hide();
 		 	$('#application').removeClass('hidden');
 			initializeMdlSelect();
 		}
 		else{
-			$('.mdl-spinner').hide();
+			$('#formSpinner').hide();
 			$('.mdl-card__supporting-text').append("Seems like DB didn't return much");
 		}
 	});

@@ -74,7 +74,7 @@
 							<h1 class="mdl-card__title-text">Apply for leave <?php echo $_SESSION['name'];?>!</h1>
 						</div>
 						<div class="mdl-card__supporting-text">
-                            <div class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 49%;"></div>
+                            <div id="formSpinner" class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 49%;"></div>
 							<form id="application" class="hidden">
                                 <div class="mdl-grid">
 
@@ -147,7 +147,8 @@
 						</div>
 						<div id="apply" class="mdl-card__actions mdl-card--border">
 			               <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">Apply!</a>
-			            </div>
+                            <div id="applySpinner" class="mdl-spinner mdl-js-spinner" style="margin-left: 3%;"></div>
+                        </div>
 					</div>
 				</div>
 				<div class="mdl-layout-spacer"></div>
