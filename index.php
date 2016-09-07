@@ -62,7 +62,7 @@
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
 				<div class="mdl-layout-spacer"></div>
-				<div class="mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--10-col-desktop">
+				<div class="mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--11-col-desktop">
 					<div class="mdl-card mdl-shadow--8dp" style="width: 100%;">
 						<div class="mdl-card__title">
 							<h1 class="mdl-card__title-text" id="title">VESIT leave application!</h1>
