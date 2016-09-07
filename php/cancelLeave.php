@@ -1,6 +1,5 @@
 <?php 
 	session_start();
-
 	$connection = new mysqli("localhost","root","","Leave-Application");
 	$fromDate=$_POST["fromDate"];
 	$googleUID=$_SESSION["sub"];
@@ -14,4 +13,5 @@
 	else{
 		echo json_encode("failed to cancel");
 	}
+	$statement->close();
  ?>
