@@ -7,7 +7,7 @@ $(document).ready(function(){
 		$toDate = moment(new Date($("#toDate").val())).format("YYYY/MM/DD");
 		$type = $("#typeOfLeave").val();
 		$note = $("#note").val();
-		if($applyTo && $fromDate && $type){
+		if($applyTo && $fromDate && $type &&toDate){
 			$.ajax({
 				url: "../php/saveform.php",
 				type:"POST",
