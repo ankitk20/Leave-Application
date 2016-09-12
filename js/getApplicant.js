@@ -24,12 +24,12 @@ $(document).ready(function(){
 							}
 							case 'Note':{
 								if(val!=null){
-									console.log(val+col);
-									$("tbody>tr:eq(" + column + ")").attr('value',val);
+									console.log(val);
+									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
 								}
 								else{
-									console.log(val+col);
-									$("tbody>tr:eq(" + column + ")").attr('value',val);
+									console.log(val);
+									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>----</td>");
 								}
 								break;
 							}
