@@ -25,7 +25,10 @@ $(document).ready(function(){
 							case 'Note':{
 								if(val!=null){
 									console.log(val);
-									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+									if(val.length<=10)
+										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+									else
+										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val.substring(0,10)+" ...</td>");
 								}
 								else{
 									console.log(val);
