@@ -66,10 +66,18 @@
 						<!-- <div class="mdl-card__supporting-text"> -->
 							<table class="mdl-data-table mdl-js-data-table mdl-shadow--8dp hidden" style="margin-left: auto; margin-right: auto; margin-top: 2%;">
 							   <thead>
-								  <tr><th class="mdl-data-table__cell--non-numeric">Applied By</th><th class="mdl-data-table__cell--non-numeric">From</th><th class="mdl-data-table__cell--non-numeric">To</th><th class="mdl-data-table__cell--non-numeric">Days</th><th class="mdl-data-table__cell--non-numeric">Type</th><th class="mdl-data-table__cell--non-numeric">Accept</th><th class="mdl-data-table__cell--non-numeric">Reject</th></tr>
+								  <tr>
+								  	<th class="mdl-data-table__cell--non-numeric">Applied By</th>
+								  	<th class="mdl-data-table__cell--non-numeric">From</th>
+								  	<th class="mdl-data-table__cell--non-numeric">To</th>
+								  	<th class="mdl-data-table__cell--non-numeric">Days</th>
+								  	<th class="mdl-data-table__cell--non-numeric">Type</th>
+								  	<th class="mdl-data-table__cell--non-numeric note">Note</th>
+								  	<th class="mdl-data-table__cell--non-numeric">Accept</th>
+								  	<th class="mdl-data-table__cell--non-numeric">Reject</th>
+								  </tr>
 							   </thead>
-							   <tbody>
-								 	
+							   <tbody>								 	
 							   </tbody>
 							   </table>
 							   <div class="mdl-spinner mdl-js-spinner is-active" style="margin-left: 49%; margin-top: 2%;"></div>
