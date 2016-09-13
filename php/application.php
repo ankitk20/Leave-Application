@@ -92,14 +92,4 @@
 </body>
 <script src="../js/getApplicant.js"></script>
 <script src="../js/acceptReject.js"></script>
-<script>
-	$('td.note').on('click',function(){
-		console.log($note);
-		console.log("click");
-		if($note!=null){
-			//display not here
-		}
-	});
-
-</script>
 </html>
