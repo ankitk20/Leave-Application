@@ -11,6 +11,8 @@ $(document).ready(function(){
 				}
 				else{
 					$("tbody").append("<tr></tr>");
+					var words;
+					var limit = 0;
 					$.each(value, function(col,val){
 						switch(col){
 							case 'ID':{
@@ -27,8 +29,27 @@ $(document).ready(function(){
 									console.log(val);
 									if(val.length<=10)
 										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
-									else
-										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val.substring(0,10)+" ...</td>");
+									else{
+										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric' id='note"+column+"'>"+val.substring(0,10)+" ...</td>");
+										var tooltip = document.createElement('span');
+										tooltip.className = 'mdl-tooltip mdl-tooltip--large';
+										tooltip.setAttribute('for','note'+column);
+										words = val.split(" ");
+										limit = 0;
+										for (var j = 0; j < words.length; j++) {
+											limit += words[j].length;
+											if(length>20){
+												tooltip.innerHTML += '<br/>'+words[j];
+												limit = 0;
+											}
+											else{
+												tooltip.innerHTML += ' '+words[j];
+												limit++;
+											}
+										}
+										$('body').append(tooltip);
+										componentHandler.upgradeElement(tooltip);
+									}
 								}
 								else{
 									console.log(val);
