@@ -2,8 +2,6 @@ $(document).ready(function(){
 	$('.mdl-spinner').hide();
 	$('table').removeClass('hidden');
 
-	$startDate=$('#startDate').val();
-	$endDate=$('#endDate').val();
 	$lastDate=getdate();
 	console.log($.type($lastDate));
 	if( true/*startdate>=$lastdate*/ ){  //admin has to reset within 10 days after term starts otherwise the button
@@ -16,6 +14,8 @@ $(document).ready(function(){
 	$('#reset').on('click',function(){
 		if($repeatRequest){
 			console.log("request");
+			$startDate=$('#startDate').val();
+			$endDate=$('#endDate').val();
 			$.ajax({
 				url:"../php/admin.php",
 				type:"post",

@@ -101,6 +101,6 @@
 		</main>
 	</div>
 </body>
-<script src="../js/date.js"></script>
+<script src="../js/adminDate.js"></script>
 <script src="../js/adminPage.js"></script>
 </html>

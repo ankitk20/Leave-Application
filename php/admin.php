@@ -9,7 +9,8 @@
 
 	$sickstatement=$connection->prepare($sickquery);
 	$sickstatement->execute();
-	$sickstatement->bind_result($Google_UID,$SickLeave,$EarnedLeave);
+	$result = $sickstatement->get_result();
+	$sickstatement->close();
 	
 
 	if($statement=$connection->prepare($query)){
@@ -18,11 +19,11 @@
 		print_r("failed to prepare");
 		$connection->errno;
 	}
-	while ($sickstatement->fetch()) {  
+	while ($row = $result->fetch_assoc()) {  
 
-		$statement->bind_param("iiiiis",5+$SickLeave,4,0,4,$EarnedLeave,$Google_UID);
+		$statement->bind_param("iiiiis",$k = 5+$row['Sick Leave'],$a=4,$b=0,$c=4,$row['Earned Leave'],$row['Google_UID']);
 		$statement->execute();
 	}
-	
+	$statement->close();
 	$connection->close();
  ?>

@@ -57,3 +57,18 @@ CREATE TABLE Authority(
 /*ALTER TABLE StaffDetails ADD FOREIGN KEY(Designation_ID) REFERENCES Designation(Designation_ID)
 ALTER TABLE StaffDetails ADD CHECK (Contact LIKE '[0-9]')*/
 ALTER TABLE LeaveHistory ADD CHECK (`Status` IN ('APPROVED','REJECTED','PENDING'))*/
+
+CREATE TABLE PendingLeave(
+	Google_UID CHAR(21) PRIMARY KEY,
+	`Sick Leave` INT,
+	`Casual Leave` INT,
+	`Vacation` INT,
+	`Early Go` INT,
+	`Earned` INT,
+	CHECK(`Sick Leave`>=0),
+	CHECK(`Casual Leave`>=0),
+	CHECK(`Vacation`>=0),
+	CHECK(`Early Go`>=0),
+	CHECK(`Earned`>=0),
+	FOREIGN KEY(Google_UID) REFERENCES StaffDetails(Google_UID)
+);
