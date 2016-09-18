@@ -1,20 +1,30 @@
 <?php
 	include_once 'loginCheck.php';
 	if($_POST['action'] == 'accept'){
-		$query = "UPDATE LeaveHistory SET Status='ACCEPTED' WHERE AppliedBy=? AND AppliedTo=? AND FromDate=? AND Status='PENDING'";
+		$query = "UPDATE LeaveHistory SET Status='ACCEPTED' WHERE AppliedBy=? AND AppliedTo=? AND FromDate=? AND ToDate=? AND LeaveType=? AND Status='PENDING'";
 	}
 	else{
-		$query = "UPDATE LeaveHistory SET Status='REJECTED' WHERE AppliedBy=? AND AppliedTo=? AND FromDate=? AND Status='PENDING'";
+		$query = "UPDATE LeaveHistory SET Status='REJECTED' WHERE AppliedBy=? AND AppliedTo=? AND FromDate=? AND ToDate=? AND LeaveType=? AND Status='PENDING'";
 	}
 	$conn = new mysqli('localhost','root','','Leave-Application');
 	$stmnt = $conn->prepare($query);
-	$stmnt->bind_param('sss',$_POST['AppliedBy'],$_SESSION['sub'],$_POST['fromDate']);
+	$stmnt->bind_param('sssss',$_POST['AppliedBy'],$_SESSION['sub'],$_POST['fromDate'],$_POST['toDate'],$_POST['type']);
 	$stmnt->execute();
-	if($stmnt->affected_rows>0){
-		echo json_encode('success');
-	}
-	else{
-		echo json_encode('failed');
-	}
 	$stmnt->close();
+	if($_POST['action'] == 'reject'){
+		$noOfDays = ((strtotime($_POST['toDate']) - strtotime($_POST['fromDate']))/86400)+1;
+		$stmnt = $conn->prepare('SELECT `'.$_POST['type'].'` FROM LeavesLeft WHERE Google_UID=?');
+		$stmnt->bind_param('s',$_POST['AppliedBy']);
+		$stmnt->execute();
+		$stmnt->bind_result($left);
+		$stmnt->fetch();
+		$stmnt->close();
+		$add = $left + $noOfDays;
+		$stmnt = $conn->prepare('UPDATE LeavesLeft SET `'.$_POST['type'].'`=? WHERE Google_UID=?');
+		$stmnt->bind_param('is',$add,$_POST['AppliedBy']);
+		$stmnt->execute();
+		$stmnt->close();
+	}
+	echo json_encode('success');
+	$conn->close();
 ?>

@@ -10,6 +10,8 @@ $(document).ready(function(){
 			$.each($.parseJSON($leaveTypes),function(column,value){
 				if(value>0)
 					$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item">'+column+'</li>');
+				else
+					$("ul[for='typeOfLeave']").append('<li class="mdl-menu__item" disabled>'+column+'</li>');
 			});
 		},
 		error:function($leaveTypes){

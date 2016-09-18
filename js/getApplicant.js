@@ -40,7 +40,7 @@ $(document).ready(function(){
 											limit += words[j].length;
 											if(length>20){
 												tooltip.innerHTML += '<br/>'+words[j];
-												limit = 0;
+												limit = words[j].length;
 											}
 											else{
 												tooltip.innerHTML += ' '+words[j];

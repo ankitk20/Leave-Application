@@ -10,13 +10,17 @@ function acceptReject(){
 		componentHandler.upgradeElement(spinner);
 		$appliedBy = $(this).parent().parent().attr('value');
 		$fromDate = moment(new Date($(this).parent().parent().children('td').eq(1).text())).format('YYYY/MM/DD');
+		$toDate = moment(new Date($(this).parent().parent().children('td').eq(2).text())).format('YYYY/MM/DD');
+		$type = $(this).parent().parent().children('td').eq(4).text();
 		$but = $(this);
 		$.ajax({
 			url:"../php/acceptReject.php",
 			type:"post",
 			data:{action:$action,
 				fromDate:$fromDate,
-				AppliedBy:$appliedBy},
+				toDate:$toDate,
+				AppliedBy:$appliedBy,
+				type:$type},
 			success:function($feedback){
 				$but.parent().parent().hide();
 				console.log($.parseJSON($feedback));
