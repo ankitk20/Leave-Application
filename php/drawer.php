@@ -18,7 +18,7 @@
 		$statement->execute();
 		$result = $statement->get_result();
 		if($result->num_rows == 1){
-			echo '<a id="admin" class="mdl-navigation__link">Admin</a>';
+			echo '<a id="admin" class="mdl-navigation__link" href="./adminPage.php">Admin</a>';
 		}
 	}
 	echo '<a class="mdl-navigation__link">About Us</a>
