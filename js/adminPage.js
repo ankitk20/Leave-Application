@@ -14,12 +14,14 @@ $(document).ready(function(){
 	$('#reset').on('click',function(){
 		if($repeatRequest){
 			console.log("request");
-			$startDate=$('#startDate').val();
-			$endDate=$('#endDate').val();
+			$startDate=moment(new Date($('#startDate').val())).format('YYYY/MM/DD');
+			$endDate=moment(new Date($('#endDate').val())).format('YYYY/MM/DD');
 			$.ajax({
 				url:"../php/admin.php",
 				type:"post",
 				datatype:"json",
+				data:{startDate:$startDate,
+					endDate:$endDate},
 				success:function($output){
 					console.log($output);
 				},

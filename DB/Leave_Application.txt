@@ -72,3 +72,6 @@ CREATE TABLE LeavesLeft(
 	CHECK(`Earned Leave`>=0),
 	FOREIGN KEY(Google_UID) REFERENCES StaffDetails(Google_UID)
 );
+
+CREATE TABLE Variable(Name varchar(30),Val varchar(30));
+INSERT INTO Variable VALUES('TermStart',NULL),('TermEnd',NULL);

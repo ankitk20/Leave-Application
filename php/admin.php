@@ -1,7 +1,16 @@
 <?php 
 
-	session_start();
+	include_once 'loginCheck.php';
 	$connection = new mysqli("localhost","root","","Leave-Application");
+
+	$statement = $connection->prepare('UPDATE Variable SET Val=? WHERE Name = "TermStart"');
+	$statement->bind_param('s',$_POST['startDate']);
+	$statement->execute();
+	$statement->close();
+	$statement = $connection->prepare('UPDATE Variable SET Val=? WHERE Name = "TermEnd"');
+	$statement->bind_param('s',$_POST['endDate']);
+	$statement->execute();
+	$statement->close();
 
 	$allotted = "SELECT * FROM LeavesAllotted";
 	$statement = $connection->prepare($allotted);
