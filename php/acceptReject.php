@@ -13,15 +13,8 @@
 	$stmnt->close();
 	if($_POST['action'] == 'reject'){
 		$noOfDays = ((strtotime($_POST['toDate']) - strtotime($_POST['fromDate']))/86400)+1;
-		$stmnt = $conn->prepare('SELECT `'.$_POST['type'].'` FROM LeavesLeft WHERE Google_UID=?');
-		$stmnt->bind_param('s',$_POST['AppliedBy']);
-		$stmnt->execute();
-		$stmnt->bind_result($left);
-		$stmnt->fetch();
-		$stmnt->close();
-		$add = $left + $noOfDays;
-		$stmnt = $conn->prepare('UPDATE LeavesLeft SET `'.$_POST['type'].'`=? WHERE Google_UID=?');
-		$stmnt->bind_param('is',$add,$_POST['AppliedBy']);
+		$stmnt = $conn->prepare('UPDATE LeavesLeft SET `'.$_POST['type'].'`=(`'.$_POST['type'].'` + ?) WHERE Google_UID=?');
+		$stmnt->bind_param('is',$noOfDays,$_POST['AppliedBy']);
 		$stmnt->execute();
 		$stmnt->close();
 	}
