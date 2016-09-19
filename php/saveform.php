@@ -19,9 +19,26 @@
 		$statement->execute();
 		$result = $statement->get_result();
 		$statement->close();
+		$statement = $connection->prepare('SELECT Val FROM Variable WHERE Name="TermStart"');
+		$statement->execute();
+		$statement->bind_result($termStart);
+		$statement->fetch();
+		$statement->close();
+		$statement = $connection->prepare('SELECT Val FROM Variable WHERE Name="TermEnd"');
+		$statement->execute();
+		$statement->bind_result($termEnd);
+		$statement->fetch();
+		$statement->close();
+		$termStart = DateTime::createFromFormat('Y/m/d', $termStart)->format('Y/m/d');
+		$termEnd = DateTime::createFromFormat('Y/m/d', $termEnd)->format('Y/m/d');
+		$from = DateTime::createFromFormat('Y/m/d', $fromDate)->format('Y/m/d');
+		$to = DateTime::createFromFormat('Y/m/d', $toDate)->format('Y/m/d');
 		$row = $result->fetch_assoc();
 		$LeavesLeft = $row[$type];
-		if($row[$type] >= $noOfDays){
+		if($from < $termStart || $to > $termEnd){
+			echo json_encode('out of term');
+		}
+		else if($row[$type] >= $noOfDays){
 			$query = "SELECT * FROM LeaveHistory WHERE AppliedBy=? AND ((FromDate<=? AND ToDate>=?) OR (FromDate<=? AND ToDate>=?) OR (FromDate<=? AND ToDate>=?) OR (FromDate>=? AND ToDate<=?)) AND Status!='REJECTED'";
 			$statement = $connection->prepare($query);
 			$statement->bind_param('sssssssss',$appliedBy,$fromDate,$toDate,$fromDate,$fromDate,$toDate,$toDate,$fromDate,$toDate);
