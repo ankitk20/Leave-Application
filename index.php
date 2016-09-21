@@ -23,13 +23,28 @@
 	<script>
 		function onSignIn(googleUser) {
 			var xhr = new XMLHttpRequest();
+			xhr.responseType = 'text';
 			xhr.open('POST', './php/token.php');
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onload = function() {
-			  window.location='./php/form.php';
+				if (xhr.response == 'login')
+					window.location='./php/form.php';
+				else {
+					document.getElementById('error').innerHTML = xhr.response;
+					$(".mdl-spinner").hide();
+					signOut();
+					$(".g-signin2").show();
+				}
 			};
 			xhr.send('idtoken=' + googleUser.getAuthResponse().id_token);
 		}
+
+		function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            });
+        }
+
 		$(document).ready(function(){
 			$(".mdl-spinner").hide();
 			$('.g-signin2').on('click',function(){
@@ -47,17 +62,9 @@
 				<span class="mdl-layout-title">Welcome!</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation">
-					<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 				</nav>
 			</div>
 		</header>
-		<!--<div class="mdl-layout__drawer">
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="/Leave-Application/">Home</a>
-				<a class="mdl-navigation__link">About Us</a>
-				<a class="mdl-navigation__link">Contact</a>
-			</nav>
-		</div>-->
 		<?php include_once './php/drawer.php'; ?>
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
@@ -95,6 +102,7 @@
 						<div class="mdl-card__actions mdl-card--border">
 							<div class="g-signin2" data-onsuccess="onSignIn"></div>
 							<div class="mdl-spinner mdl-js-spinner"></div>
+							<span id='error' style='color: red;'></span>
 			            </div>
 					</div>
 				</div>

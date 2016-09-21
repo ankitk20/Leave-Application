@@ -36,7 +36,7 @@
 		$row = $result->fetch_assoc();
 		$LeavesLeft = $row[$type];
 		if($from < $termStart || $to > $termEnd){
-			echo json_encode('out of term');
+			echo 'Leave can only be applied within the current term i.e. from: '.$termStart.' to: '.$termEnd;
 		}
 		else if($row[$type] >= $noOfDays){
 			$query = "SELECT * FROM LeaveHistory WHERE AppliedBy=? AND ((FromDate<=? AND ToDate>=?) OR (FromDate<=? AND ToDate>=?) OR (FromDate<=? AND ToDate>=?) OR (FromDate>=? AND ToDate<=?)) AND Status!='REJECTED'";
@@ -56,7 +56,7 @@
 					$statement = $connection->prepare($query);
 					$statement->bind_param("ssssss",$appliedBy,$appliedTo,$fromDate,$toDate,$type,$note);
 					$statement->execute();
-					echo $statement->affected_rows;
+					echo 'applied';
 					$statement->close();
 					$statement = $connection->prepare('UPDATE LeavesLeft SET `'.$type.'`=? WHERE Google_UID=?');
 					$deduct = $LeavesLeft-$noOfDays;
@@ -65,13 +65,16 @@
 					$statement->close();
 					$connection->close();
 				}
+				else {
+					echo 'Something went wrong.';
+				}
 			}
 			else{
-				echo 'already taken leave on these dates';
+				echo 'You have already applied for leave between these dates. Please check your leave history.';
 			}
 			}
 			else{
-				echo 'out of limit';
+				echo 'You have only '.$row[$type].' '.$type.' left';
 			}
 		}
 		else{

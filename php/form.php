@@ -57,13 +57,6 @@
 				</nav>
 			</div>
 		</header>
-		<!--<div class="mdl-layout__drawer">
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link">Home</a>
-				<a class="mdl-navigation__link">About Us</a>
-				<a class="mdl-navigation__link">Contact</a>
-			</nav>
-		</div>-->
         <?php include_once './drawer.php'; ?>
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
@@ -86,12 +79,6 @@
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
         									<label for="typeOfLeave" class="mdl-textfield__label">Type of leave:</label>
-        									<!--<ul for="typeOfLeave" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-        										<li class="mdl-menu__item">Casual</li>
-        										<li class="mdl-menu__item">Sick</li>
-        										<li class="mdl-menu__item">Maternity</li>
-        										<li class="mdl-menu__item">Hospital</li>
-        									</ul>-->
         								</div>
 
     								</div>
@@ -104,10 +91,6 @@
         										<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
         									</label>
         									<label for="applyTo" class="mdl-textfield__label">Apply to:</label>
-        									<!--<ul for="applyTo" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-        										<li class="mdl-menu__item">HOD</li>
-        										<li class="mdl-menu__item">Deputy HOD</li>
-        									</ul>-->
         								</div>
 
                                     </div>
@@ -148,6 +131,7 @@
 						<div id="apply" class="mdl-card__actions mdl-card--border">
 			               <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">Apply!</a>
                             <div id="applySpinner" class="mdl-spinner mdl-js-spinner" style="margin-left: 3%;"></div>
+                            <span id='error' style='color: red;'></span>
                         </div>
 					</div>
 				</div>

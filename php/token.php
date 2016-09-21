@@ -22,7 +22,14 @@
 				$_SESSION['sub'] = $obj->sub;
 				$_SESSION['email'] = $obj->email;
 				$_SESSION['name'] = $obj->given_name;
+				echo 'login';
+			}
+			else {
+				echo 'Only staff of VESIT can use this application. If you are a staff member and still seeing this message, Please contact the admin.';
 			}
 		}
+	}
+	else {
+		echo 'Something went wrong please try again.';
 	}
 ?>

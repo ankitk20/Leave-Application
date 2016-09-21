@@ -19,14 +19,23 @@ $(document).ready(function(){
 					note: $note
 				},
 				success: function($result){
-					console.log($result);
-					if($result == 1)
-					window.location.href = "history.php";
+					if($result == 'applied')
+						window.location.href = "history.php";
+					else {
+						$("#apply>a").removeClass("hidden");
+						$("#applySpinner").hide();
+						$("#error").html($result);
+					}
 				},
 				error: function(){
 					console.log("error");
 				} 
 			});
+		}
+		else {
+			$("#apply>a").removeClass("hidden");
+			$("#applySpinner").hide();
+			$("#error").html('Please fill the complete form.');
 		}
 	});
 });
