@@ -18,7 +18,7 @@
 		$statement->execute();
 		$result = $statement->get_result();
 		if($result->num_rows == 1){
-			echo '<a id="admin" class="mdl-navigation__link" id="admin">Admin</a>
+			echo '<a id="admin" class="mdl-navigation__link" id="admin" href="#">Admin</a>
 			<nav id="sub-menu" style="margin-left: 10%;">
 			<a class="mdl-navigation__link" href="./resetTermPage.php">Reset Term</a>
 			</nav>';
@@ -30,8 +30,8 @@
 		    </script>";
 		}
 	}
-	echo '<a class="mdl-navigation__link">About Us</a>
-				<a class="mdl-navigation__link">Contact</a>
+	echo '<a class="mdl-navigation__link" href="#">About Us</a>
+				<a class="mdl-navigation__link" href="#">Contact</a>
 			</nav>
 		</div>';
 ?>

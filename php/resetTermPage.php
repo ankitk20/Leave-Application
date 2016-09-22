@@ -47,7 +47,7 @@
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 		<header class="mdl-layout__header mdl-layout__header--scroll">
 			<div class="mdl-layout__header-row">
-				<span class="mdl-layout-title">Admin Section</span>
+				<span class="mdl-layout-title">Reset Term</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation">
 					<a class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-js-ripple-effect" onclick="signOut();">Sign out</a>
