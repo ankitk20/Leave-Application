@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var error = 0;
+	initializeMdlSelect();
 	$.when($.ajax({
 		url:"../php/getType.php",
 		datatype:"json",
@@ -39,7 +40,7 @@ $(document).ready(function(){
 		if(error == 0){
 			$('#formSpinner').hide();
 		 	$('#application').removeClass('hidden');
-			initializeMdlSelect();
+	        getmdlSelect.init('.getmdl-select');
 		}
 		else{
 			$('#formSpinner').hide();
