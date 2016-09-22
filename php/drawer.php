@@ -18,7 +18,16 @@
 		$statement->execute();
 		$result = $statement->get_result();
 		if($result->num_rows == 1){
-			echo '<a id="admin" class="mdl-navigation__link" href="./adminPage.php">Admin</a>';
+			echo '<a id="admin" class="mdl-navigation__link" id="admin">Admin</a>
+			<nav id="sub-menu" style="margin-left: 10%;">
+			<a class="mdl-navigation__link" href="./resetTermPage.php">Reset Term</a>
+			</nav>';
+			echo "<script>
+		        $('#sub-menu').slideUp();
+		        $('#admin').on('click',function(){
+		            $('#sub-menu').slideToggle();
+		        })
+		    </script>";
 		}
 	}
 	echo '<a class="mdl-navigation__link">About Us</a>

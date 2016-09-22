@@ -17,7 +17,7 @@ $(document).ready(function(){
 			$startDate=moment(new Date($('#startDate').val())).format('YYYY/MM/DD');
 			$endDate=moment(new Date($('#endDate').val())).format('YYYY/MM/DD');
 			$.ajax({
-				url:"../php/admin.php",
+				url:"../php/resetTerm.php",
 				type:"post",
 				datatype:"json",
 				data:{startDate:$startDate,

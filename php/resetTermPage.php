@@ -98,5 +98,5 @@
 	</div>
 </body>
 <script src="../js/adminDate.js"></script>
-<script src="../js/adminPage.js"></script>
+<script src="../js/resetTerm.js"></script>
 </html>
