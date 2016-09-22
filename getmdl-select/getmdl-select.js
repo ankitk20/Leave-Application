@@ -1,13 +1,5 @@
 {
     'use strict';
-    window.initializeMdlSelect = function () {
-        new MutationObserver(function (ev) {
-            ev.forEach(function (mu) {
-                componentHandler.upgradeDom();
-            })
-        }).observe(document, { childList: true, subtree: true });
-    };
-
     var getmdlSelect = {
         defaultValue : {
             width: 300
