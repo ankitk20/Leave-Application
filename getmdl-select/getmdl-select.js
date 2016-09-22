@@ -3,9 +3,7 @@
     window.initializeMdlSelect = function () {
         new MutationObserver(function (ev) {
             ev.forEach(function (mu) {
-                mu.addedNodes.forEach(function(ad){
-                    componentHandler.upgradeDom();
-                });
+                componentHandler.upgradeDom();
             })
         }).observe(document, { childList: true, subtree: true });
     };
