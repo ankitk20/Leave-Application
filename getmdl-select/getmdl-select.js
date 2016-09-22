@@ -1,12 +1,13 @@
 {
     'use strict';
     window.initializeMdlSelect = function () {
-        getmdlSelect.init('.getmdl-select');
-        document.addEventListener("DOMNodeInserted", function (ev) {
-            if (ev.relatedNode.querySelectorAll(".getmdl-select").length > 0) {
-                componentHandler.upgradeDom();
-            }
-        }, false);
+        new MutationObserver(function (ev) {
+            ev.forEach(function (mu) {
+                mu.addedNodes.forEach(function(ad){
+                    componentHandler.upgradeDom();
+                });
+            })
+        }).observe(document, { childList: true, subtree: true });
     };
 
     var getmdlSelect = {
