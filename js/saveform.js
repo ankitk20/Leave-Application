@@ -7,7 +7,8 @@ $(document).ready(function(){
 		$toDate = moment(new Date($("#toDate").val())).format("YYYY/MM/DD");
 		$type = $("#typeOfLeave").val();
 		$note = $("#note").val();
-		if($applyTo && $fromDate && $type &&toDate){
+		if($applyTo && $fromDate!='Invalid date' && $type && toDate!='Invalid date'){
+			$("#error").html('');
 			$.ajax({
 				url: "../php/saveform.php",
 				type:"POST",
@@ -34,7 +35,7 @@ $(document).ready(function(){
 		}
 		else {
 			$("#apply>a").removeClass("hidden");
-			$("#applySpinner").hide();
+			$("#applySpinner").removeClass("is-active");
 			$("#error").html('Please fill the complete form.');
 		}
 	});
