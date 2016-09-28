@@ -100,7 +100,7 @@
 							</ul>
 						</div>
 						<div class="mdl-card__actions mdl-card--border">
-							<div class="g-signin2" data-onsuccess="onSignIn"></div>
+							<div class="g-signin2" data-onsuccess="onSignIn" data-prompt='select_account'></div>
 							<div class="mdl-spinner mdl-js-spinner"></div>
 							<span id='error' style='color: red;'></span>
 			            </div>

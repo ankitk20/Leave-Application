@@ -25,7 +25,7 @@ $(document).ready(function(){
 								break;
 							}
 							case 'Note':{
-								if(val!=null){
+								if(val==' '){
 									console.log(val);
 									if(val.length<=10)
 										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");

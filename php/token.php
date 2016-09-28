@@ -25,7 +25,7 @@
 				echo 'login';
 			}
 			else {
-				echo 'Only staff of VESIT can use this application. If you are a staff member and still seeing this message, Please contact the admin.';
+				echo 'Only staff of VESIT can use this application. Make sure you are using your VES account to login. If you are a staff member and still seeing this message, Please contact the admin.';
 			}
 		}
 	}
