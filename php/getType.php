@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	if(isset($_SESSION['sub'])){
-		$conn = new mysqli('localhost','root','','Leave-Application');
+	if (isset($_SESSION['sub'])) {
+		$conn = new mysqli('localhost', 'root', '', 'Leave-Application');
 		$statement = $conn->prepare('SELECT * FROM LeavesAllotted WHERE Designation_ID = (SELECT Designation_ID FROM StaffDetails WHERE Google_UID = ?)');
-		$statement->bind_param('s',$_SESSION['sub']);
+		$statement->bind_param('s', $_SESSION['sub']);
 		$statement->execute();
 		$result = $statement->get_result();
 		$statement->close();
@@ -15,7 +15,7 @@
 			}
 		}
 		$statement = $conn->prepare('SELECT * FROM LeavesLeft WHERE Google_UID=?');
-		$statement->bind_param('s',$_SESSION['sub']);
+		$statement->bind_param('s', $_SESSION['sub']);
 		$statement->execute();
 		$result = $statement->get_result();
 		$r = $result->fetch_assoc();
