@@ -1,6 +1,3 @@
-<?php
-	include_once 'loginCheck.php';
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +51,7 @@
 				<a class="mdl-navigation__link">Contact</a>
 			</nav>
 		</div>-->
-		<?php include_once './drawer.php'; ?>
+		<?php include_once '../drawer.php'; ?>
 		<main class="mdl-layout__content">
 			<!-- <div class="mdl-grid"> -->
 			<!-- <div class="mdl-layout-spacer"></div> -->

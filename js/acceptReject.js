@@ -14,7 +14,7 @@ function acceptReject(){
 		$type = $(this).parent().parent().children('td').eq(4).text();
 		$but = $(this);
 		$.ajax({
-			url:"../php/acceptReject.php",
+			url:"../ajax/acceptReject.php",
 			type:"post",
 			data:{action:$action,
 				fromDate:$fromDate,

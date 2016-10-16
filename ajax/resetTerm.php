@@ -1,6 +1,4 @@
 <?php 
-
-	include_once 'loginCheck.php';
 	$connection = new mysqli("localhost","root","","Leave-Application");
 
 	$statement = $connection->prepare('UPDATE Variable SET Val=? WHERE Name = "TermStart"');

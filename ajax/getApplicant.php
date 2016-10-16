@@ -1,5 +1,4 @@
  <?php
-	include_once 'loginCheck.php';
 	$host = "localhost";
 	$user = "root";
 	$password = "";

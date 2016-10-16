@@ -1,5 +1,4 @@
 <?php
-	include_once 'loginCheck.php';
 	$connection = new mysqli("localhost","root","","Leave-Application");
 	$fromDate=$_POST["fromDate"];
 	$googleUID=$_SESSION["sub"];

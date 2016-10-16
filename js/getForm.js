@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var error = 0;
 	$.when($.ajax({
-		url:"../php/getType.php",
+		url:"../ajax/getType.php",
 		datatype:"json",
 		type:"post",
 		success:function($leaveTypes){
@@ -18,7 +18,7 @@ $(document).ready(function(){
 			console.log('IDK whats wrong');
 		}
 	}),$.ajax({
-		url:"../php/applyTo.php",
+		url:"../ajax/applyTo.php",
 		datatype:"json",
 		type:"post",
 		success:function($applyTo){

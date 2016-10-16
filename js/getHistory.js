@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$.ajax({
-		url:"../php/getHistory.php",
+		url:"../ajax/getHistory.php",
 		datatype:"json",
 		type:"post",
 		success:function($row){

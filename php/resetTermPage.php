@@ -1,6 +1,3 @@
-<?php
-	include_once 'loginCheck.php';
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +52,7 @@
 			</div>
 		</header>
 
-		<?php include_once './drawer.php'; ?>
+		<?php include_once '../drawer.php'; ?>
 		<main class="mdl-layout__content">
 						<!-- <div class="mdl-card__supporting-text"> -->
 							<table class="mdl-data-table mdl-js-data-table mdl-shadow--8dp hidden" style="margin-left: auto; margin-right: auto; margin-top: 2%;">

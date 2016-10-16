@@ -24,13 +24,15 @@
 		function onSignIn(googleUser) {
 			var xhr = new XMLHttpRequest();
 			xhr.responseType = 'text';
-			xhr.open('POST', './php/token.php');
+			xhr.open('POST', './token.php');
+			xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onload = function() {
 				if (xhr.response == 'login')
 					window.location='./php/form.php';
 				else {
 					document.getElementById('error').innerHTML = xhr.response;
+					console.log(xhr.response);
 					$(".mdl-spinner").hide();
 					signOut();
 					$(".g-signin2").show();
@@ -65,7 +67,7 @@
 				</nav>
 			</div>
 		</header>
-		<?php include_once './php/drawer.php'; ?>
+		<?php include_once './drawer.php'; ?>
 		<main class="mdl-layout__content">
 			<div class="mdl-grid">
 				<div class="mdl-layout-spacer"></div>

@@ -15,7 +15,7 @@ function cancelLeave(){
 		console.log($toDate);
 		console.log($type);
 		$.ajax({
-			url:"../php/cancelLeave.php",
+			url:"../ajax/cancelLeave.php",
 			type:"post",
 			data:{fromDate:$fromDate,
 				toDate:$toDate,

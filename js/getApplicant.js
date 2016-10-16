@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$.ajax({
-		url:"../php/getApplicant.php",
+		url:"../ajax/getApplicant.php",
 		type:"post",
 		datatype:"json",
 		success:function($row){
@@ -25,7 +25,7 @@ $(document).ready(function(){
 								break;
 							}
 							case 'Note':{
-								if(val==' '){
+								if(val!=' '){
 									console.log(val);
 									if(val.length<=10)
 										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");

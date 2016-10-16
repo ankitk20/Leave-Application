@@ -1,5 +1,4 @@
 <?php
-	include_once 'loginCheck.php';
 	if($_POST['action'] == 'accept'){
 		$query = "UPDATE LeaveHistory SET Status='ACCEPTED' WHERE AppliedBy=? AND AppliedTo=? AND FromDate=? AND ToDate=? AND LeaveType=? AND Status='PENDING'";
 	}

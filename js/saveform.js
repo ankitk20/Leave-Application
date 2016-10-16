@@ -10,7 +10,7 @@ $(document).ready(function(){
 		if($applyTo && $fromDate!='Invalid date' && $type && toDate!='Invalid date'){
 			$("#error").html('');
 			$.ajax({
-				url: "../php/saveform.php",
+				url: "../ajax/saveform.php",
 				type:"POST",
 				data:{
 					appliedTo: $applyTo,
