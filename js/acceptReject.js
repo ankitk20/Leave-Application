@@ -1,18 +1,18 @@
 function acceptReject(){
 	$("button").on("click",function(){
 		$(this).prop('disabled',true);
-		$(this).parent().parent().find('button').prop('disabled',true);
+		$row = $('#'+$(this).data('id'));
+		$row.find('button').prop('disabled',true);
 		$(this).hide();
 		$action = $(this).attr('value');
 		var spinner = document.createElement('div');
 		spinner.className = 'mdl-spinner mdl-js-spinner is-active';
 		$(this).parent().append(spinner);
 		componentHandler.upgradeElement(spinner);
-		$appliedBy = $(this).parent().parent().attr('value');
-		$fromDate = moment(new Date($(this).parent().parent().children('td').eq(1).text())).format('YYYY/MM/DD');
-		$toDate = moment(new Date($(this).parent().parent().children('td').eq(2).text())).format('YYYY/MM/DD');
-		$type = $(this).parent().parent().children('td').eq(4).text();
-		$but = $(this);
+		$appliedBy = $(this).data('id');
+		$fromDate = $(this).data('from');
+		$toDate = $(this).data('to');
+		$type = $(this).data('type');
 		$.ajax({
 			url:"../ajax/acceptReject.php",
 			type:"post",
@@ -22,7 +22,7 @@ function acceptReject(){
 				AppliedBy:$appliedBy,
 				type:$type},
 			success:function($feedback){
-				$but.parent().parent().hide();
+				$row.hide();
 				console.log($.parseJSON($feedback));
 			},
 			error:function($feedback){

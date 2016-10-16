@@ -10,27 +10,44 @@ $(document).ready(function(){
 					$("tbody").append('<tr><td style="text-align: center;" colspan="8">No leave applications to show.</td></tr>');
 				}
 				else{
-					$("tbody").append("<tr></tr>");
+					$tr = $("<tr></tr>");
+					$accept = $("<button class='mdl-button mdl-js-button mdl-js-ripple-effect' value='accept'>Accept</button>");
+					$reject = $("<button class='mdl-button mdl-js-button mdl-js-ripple-effect' value='reject'>Reject</button>");
 					var words;
 					var limit = 0;
 					$.each(value, function(col,val){
 						switch(col){
 							case 'ID':{
-								$("tbody>tr:eq(" + column + ")").attr('value',val);
+								$tr.attr('id',val);
+								$accept.data('id',val);
+								$reject.data('id',val);
 								break;
 							}
-							case 'To':
+							case 'Type':{
+								$accept.data('type',val);
+								$reject.data('type',val);
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+								break;
+							}
+							case 'To':{
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
+								$accept.data('to',val);
+								$reject.data('to',val);
+								break;
+							}
 							case 'From':{
-								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
+								$accept.data('from',val);
+								$reject.data('from',val);
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
 								break;
 							}
 							case 'Note':{
-								if(val!=' '){
-									console.log(val);
+								if(val.length != 0){
+									console.log(val.length);
 									if(val.length<=10)
-										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+									$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
 									else{
-										$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric' id='note"+column+"'>"+val.substring(0,10)+" ...</td>");
+										$tr.append("<td class='mdl-data-table__cell--non-numeric' id='note"+column+"'>"+val.substring(0,10)+" ...</td>");
 										var tooltip = document.createElement('span');
 										tooltip.className = 'mdl-tooltip mdl-tooltip--large';
 										tooltip.setAttribute('for','note'+column);
@@ -53,18 +70,20 @@ $(document).ready(function(){
 								}
 								else{
 									console.log(val);
-									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>----</td>");
+									$tr.append("<td class='mdl-data-table__cell--non-numeric'>----</td>");
 								}
 								break;
 							}
 							default:{
-								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
 							}
 						}
 					});
-				
-					$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect' value='accept'>Accept</button></td>");
-					$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect' value='reject'>Reject</button></td>");
+					$td = $("<td class='mdl-data-table__cell--non-numeric'></td>");
+					$tr.append($td.append($accept));
+					$td = $("<td class='mdl-data-table__cell--non-numeric'></td>");
+					$tr.append($td.append($reject));
+					$('tbody').append($tr);
 				}
 			});
 			$('.mdl-spinner').hide();

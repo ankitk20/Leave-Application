@@ -10,31 +10,44 @@ $(document).ready(function(){
 					$("tbody").append('<tr><td style="text-align: center;" colspan="7">Your leave history is empty for now!</td></tr>');
 				}
 				else{
-					$("tbody").append("<tr></tr>");
+					$tr = $("<tr></tr>");
+					$cancel = $("<button class='mdl-button mdl-js-button mdl-js-ripple-effect'>Cancel</button>");
 					$.each(value, function(col,val){
 						switch(col){
 							case 'ID':{
-								$("tbody>tr:eq(" + column + ")").attr('value',val);
+								$tr.attr('id',val);
+								$cancel.data('id',val);
 								break;
 							}
-							case 'To':
+							case 'To':{
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
+								$cancel.data('to',val);
+								break;
+							}
 							case 'From':{
-								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+moment(val).format("ddd, MMM D YYYY")+"</td>");
+								$cancel.data('from',val);
 								break;
 							}
-							case 'Status':{
-								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
-								if(val == 'PENDING')
-									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect'>Cancel</button></td>");
-								else
-									$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-js-ripple-effect' disabled>Cancel</button></td>");
+							case 'Type':{
+								$cancel.data('type',val);
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
 								break;
 							}
 							default:{
-								$("tbody>tr:eq(" + column + ")").append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
+								$tr.append("<td class='mdl-data-table__cell--non-numeric'>"+val+"</td>");
 							}
 						}
 					});
+					$td = $("<td class='mdl-data-table__cell--non-numeric'></td>");
+					if (value['Status'] == 'PENDING') {
+						$td.append($cancel);
+					}
+					else {
+						$td.append("<button class='mdl-button mdl-js-button mdl-js-ripple-effect' disabled>Cancel</button>")
+					}
+					$tr.append($td);
+					$("tbody").append($tr);
 				}
 			});
 			$('.mdl-spinner').hide();
