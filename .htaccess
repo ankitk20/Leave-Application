@@ -1,1 +1,3 @@
 Options -Indexes
+ErrorDocument 403 /Leave-Application/error/403.php
+ErrorDocument 404 /Leave-Application/error/404.php

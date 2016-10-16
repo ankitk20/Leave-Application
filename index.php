@@ -80,21 +80,21 @@
 							<ul class="mdl-list">
 								<li class="mdl-list__item mdl-list__item--three-line">
 									<span class="mdl-list__item-primary-content">
-										<i class="material-icons mdl-list__item-avatar">check_circle</i>
+										<i class="material-icons mdl-list__item-avatar">&#xE86C;</i>
 										<span>No sign-up required!</span>
 										<span class="mdl-list__item-text-body">Login with your existing Google account! No hassle of sign-up.</span>
 									</span>
 								</li>
 								<li class="mdl-list__item mdl-list__item--three-line">
 									<span class="mdl-list__item-primary-content">
-										<i class="material-icons mdl-list__item-avatar">check_circle</i>
+										<i class="material-icons mdl-list__item-avatar">&#xE86C;</i>
 										<span>Easy to apply!</span>
 										<span class="mdl-list__item-text-body">Just fill out a quick form and click apply! Pretty simple.</span>
 									</span>
 								</li>
 								<li class="mdl-list__item mdl-list__item--three-line">
 									<span class="mdl-list__item-primary-content">
-										<i class="material-icons mdl-list__item-avatar">check_circle</i>
+										<i class="material-icons mdl-list__item-avatar">&#xE86C;</i>
 										<span>Get notified immediately!</span>
 										<span class="mdl-list__item-text-body">Receive an email as soon as your leave is approved!</span>
 									</span>
