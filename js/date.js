@@ -3,8 +3,8 @@ var fromDate = new mdDateTimePicker.default({
   type: 'date',
   trigger: document.getElementById('fromDate'),
   orientation: 'PORTRAIT',
-  past: moment(),
-  future: moment().add(30, 'days')
+  past: moment().subtract(10,'years'),
+  future: moment().add(10, 'years')
 });
 
 // To-Date Picker
@@ -12,8 +12,8 @@ var toDate = new mdDateTimePicker.default({
   type: 'date',
   trigger: document.getElementById('toDate'),
   orientation: 'PORTRAIT',
-  past: moment(),
-  future: moment().add(30, 'days')
+  past: moment().subtract(10,'years'),
+  future: moment().add(10, 'years')
 });
 
 // Open from-date picker on click
@@ -36,7 +36,7 @@ document.getElementById('fromDate').addEventListener('onOk', function() {
 	document.getElementById('toDiv').className += ' is-dirty';
 	toDate._init = moment(fromDate.time);
 	toDate._past = moment(fromDate.time);
-	toDate._future = moment(fromDate.time).add(30, 'days');
+	toDate._future = moment(fromDate.time).add(10, 'years');
 	document.getElementById('numberDiv').className += ' is-dirty';
 	document.getElementById('noOfDays').value = toDate.time.diff(fromDate.time, 'days')+1;
 });

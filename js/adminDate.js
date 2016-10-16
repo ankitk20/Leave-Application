@@ -3,8 +3,8 @@ var fromDate = new mdDateTimePicker.default({
   type: 'date',
   trigger: document.getElementById('startDate'),
   orientation: 'PORTRAIT',
-  past: moment(),
-  future: moment().add(30, 'days')
+  past: moment().subtract(10,'years'),
+  future: moment().add(10, 'years')
 });
 
 // To-Date Picker
@@ -12,8 +12,8 @@ var toDate = new mdDateTimePicker.default({
   type: 'date',
   trigger: document.getElementById('endDate'),
   orientation: 'PORTRAIT',
-  past: moment(),
-  future: moment().add(30, 'days')
+  past: moment().subtract(10,'years'),
+  future: moment().add(10, 'years')
 });
 
 // Open from-date picker on click
@@ -32,9 +32,9 @@ toDateToggle.addEventListener('click', function() {
 document.getElementById('startDate').addEventListener('onOk', function() {
 	document.getElementById('fromDiv').className += ' is-dirty';
 	this.value = fromDate.time.format("ddd, MMM D YYYY").toString();
-	toDate._init = moment(fromDate.time).add(5, 'months');
-	toDate._past = moment(fromDate.time).add(5, 'months');
-	toDate._future = moment(fromDate.time).add(7, 'months');
+	toDate._init = moment(fromDate.time);
+	toDate._past = moment(fromDate.time);
+	toDate._future = moment(fromDate.time).add(10, 'years');
 });
 
 // Do this when to-date is selected
