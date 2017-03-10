@@ -1,2 +1,2 @@
-# Leave-Application
-This application is intended to be used for educational purpose only.
+# Leave Application
+Leave-Application allows college faculty to apply for a leave digitally.
