@@ -1,2 +1,2 @@
 # Leave Application
-Leave-Application allows college faculty to apply for a leave digitally.
+Leave-Application allows college faculty to apply for leaves digitally.
