@@ -1,2 +1,2 @@
 # Leave Application
-Leave-Application allows college faculty to apply for leaves digitally.
+The application allows the faculty members of all colleges under Mumbai University to apply for leaves digitally.
